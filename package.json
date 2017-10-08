@@ -1,14 +1,13 @@
 {
-  "name": "app",
-  "productName": "App",
-  "version": "0.0.0",
-  "description": "",
-  "license": "MIT",
-  "repository": "user/repo",
+  "name": "vaultron",
+  "productName": "Vaultron",
+  "version": "0.0.1",
+  "description": "Vaultron is an electron based password manager",
+  "license": "GPL-3.0",
+  "repository": "grant-wade/Vaultron",
   "author": {
-    "name": "",
-    "email": "",
-    "url": ""
+    "name": "Colton King, Grant Wade, Robby Boney, Rob Wooner",
+    "email": "grant.wade@wsu.edu"
   },
   "scripts": {
     "start": "electron .",
