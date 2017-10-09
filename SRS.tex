@@ -81,9 +81,25 @@ This section will describe who the intended audience for the
 password manager will be and describe the purpose of the
 project in depth.
 \section{Document Purpose}
-1-2 paragraphs about what the purpose of this document
-include revisou
+The product we are writing this SRS document for is the cryptographically
+secure cross platform password manager Version 0.0.1. This password manager 
+will create strong passwords and encrypt them. It will remember the password 
+for the website it is being created for.
 \section{Project Scope}
+This software is a password manager that creates cryptographically secure 
+passwords. It will store the hashed passwords in a json file for safe keeping.
+There can be multiple profiles, each one will have a master password of its own 
+that will unlock the vault gaining access to the passwords. The master password
+will be created by the user so that they can remember it. The password manager 
+can however create a good master password that the user can write down to remember.
+the master password will not be sent through email or text so that there will
+be no chance of it being stolen from a malicious attacker.
+
+Using this password manager allows the user to have strong and secure passwords 
+that they will not have to remember. Not needing to remember allows for a strong 
+password that has a very little chance of being cracked. The user only needs to sign
+in with their master password and copy and paste the desired password from the 
+vault into the website, or other password field.
 \section{Intended Audience and Document Overview}
 \section{Definitions, Acronyms and Abbreviations}
 \section{Document Conventions}
@@ -94,15 +110,34 @@ include revisou
 \section{Product Functionality}
 \section{Users and Characteristics}
 \section{Operating Environment}
+The environment in which this software will be operating in are all
+major operating systems, OS, Windows, Linux. 
 \section{Design and Implementation Constraints}
+The biggest constraints for this software are time and security considerations.
+We need to make sure that our software follows popular, effective, and
+accepted security protocols. Given the time frame in which to create this
+product and the importance that our password manager successfully encrypts
+and protects our passwords, we need to work hard and efficient.
 \section{User Documentation}
 \section{Assumptions and Dependencies}
 
 \chapter{Specific Requirements}
 \section{External Interface Requirements}
+\subsection{User Interfaces}
+Our product will have a login window that will have a username text box and password
+text box and an enter button. The enter button will be pressed after the password 
+and username are inputted. The login window will blur out the rest of the window
+behind it.
+We will have a minumize, maximize  and exit button in the top left corner. 
+we will have tabs along the top that will take you to different password profiles,
+like work, play, etc. 
+There will be a create password button that will create a pop up that has entries
+for a url and a drop down for picking the password profile. 
+\subsection{Hardware Interfaces}
+\subsection{Software Interfaces}
+\subsection{Communications Interfaces}
 \section{Functional Requirements}
 \section{Behaviour Requirements}
-
 \chapter{Other Non-Functional Requirements}
 \section{Performance Requirements}
 \section{Safety and Security Requirements}
