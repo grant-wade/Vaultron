@@ -6,6 +6,14 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 
+# LaTex Render files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.toc
+*.synctex.gz
+
 # Runtime data
 pids
 *.pid
