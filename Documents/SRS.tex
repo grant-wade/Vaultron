@@ -1,18 +1,22 @@
 \documentclass{report}
 % \usepackage[utf8]{inputenc} % pictures
-
 \usepackage[titletoc]{appendix} % appendix
 \usepackage[cm]{fullpage} % full page 
 \usepackage{nopageno} % Disable bottom page #
 \usepackage{multicol} % multicolumn 
 \usepackage{enumitem} % list items
 \usepackage{fancyhdr} % page headers
+\usepackage{titlesec} % title format
 
-% Style choices, indent and text spacing
+% Set line spacing
 \renewcommand{\baselinestretch}{1}
 
-% \rhead{Page \thepage}
-% \lhead{Vaultron: Table of Contents}
+% Set indent size
+\setlength\parindent{0pt}
+
+% Title format
+\titleformat{\chapter}{\Huge\bf}{\thechapter}{20px}{\Huge\bf}
+
 
 \begin{document}
 % Begining of title page
@@ -76,13 +80,13 @@
 \chapter{Introduction}
 The goal of this project is to create a cryptographically
 secure cross platform password manager. The cross platform
-compatability will be achived using electron and node.js.
+compatibility will be achieved using electron and node.js.
 This section will describe who the intended audience for the
 password manager will be and describe the purpose of the
 project in depth.
 \section{Document Purpose}
 The product we are writing this SRS document for is the cryptographically
-secure cross platform password manager Version 0.0.1. This password manager 
+secure cross platform password manager Version 0.0.1 (Vaultron). This password manager 
 will create strong passwords and encrypt them. It will remember the password 
 for the website it is being created for.
 \section{Project Scope}
@@ -101,47 +105,133 @@ password that has a very little chance of being cracked. The user only needs to 
 in with their master password and copy and paste the desired password from the 
 vault into the website, or other password field.
 \section{Intended Audience and Document Overview}
+Client: The intended audience of this software is anyone that uses the internet 
+and currently keeps track of their passwords by hand or lets the browser
+keep track of them. This software will offer a safe, secure, and isolated
+way to store any passwords. Security is our number one priority, if something
+can be secured it will, so we can ensure that no user data can be leaked.
+
+This document will be used as a starting point to overview the
+software. It will describe how it can be used, the security behind the
+password storage, and what technologies will be used to create the software.
+The rest of the document contains all of the specifications for the
+software, which includes product functionality, operating environment,
+interface design, functional requirements, behavioral requirements, 
+security requirements and other product details.
 \section{Definitions, Acronyms and Abbreviations}
+\textbf{CSS:} Cascading Style Sheets, used to style our electron application
+
+\textbf{Electron:} Cross platform desktop application development environment
+using HTML, CSS, and JavaScript
+
+\textbf{Hardened Mode:} A mode within the product that enable encryption of entire
+vault for transport
+
+\textbf{HTML:} HyperText Markup Language, used to design our electron application
+
+\textbf{JavaScript:} Programming language used on the web and Electron
+
+\textbf{Vault:} Password storage platform created for this project
+
 \section{Document Conventions}
-\section{References and Acknowlegments}
+
+\section{References and Acknowledgments}
+
+% END OF INTRODUCTION
 
 \chapter{Overall Description}
+
 \section{Product Perspective}
+At the time of design this project is intended to fill a similar
+niche in the password storage and serving field that \textit{1Password}
+and \textit{LastPass} fill. Thus it is in the same family as
+the two products previously mentioned, a system that stores passwords
+securely and allows later retrieval. This product will be implemented in
+two main parts. One, a desktop application that will serve as the \textit{vault}
+storing the passwords, creating the passwords, and allowing later access
+to the passwords. The second main part is the browser extensions that
+will be used to auto-fill in usernames and passwords into any website
+that the user adds to their vault. 
+
 \section{Product Functionality}
+The product is split into two components, desktop application and browser
+extension. 
+
+\subsection{Desktop Application}
+\begin{itemize}
+    \item Generate secure passwords (any length or complexity)
+    \item Authenticate user to decrypt passwords (required before use)
+    \item Generate a \textit{Vault} on first run of software
+    \item Allow creation of new entries within the \textit{Vault} (passwords, notes, etc)
+    \item Utility to sync users \textit{Vault} between computers (Dropbox, Google Drive, etc)
+\end{itemize}
+\subsection{Browser Extension}
+\begin{itemize}
+    \item Auto fill of information from the \textit{Vault} to the webpage
+    \item Create of new entries in the \textit{Vault}
+\end{itemize}
+
 \section{Users and Characteristics}
+
 \section{Operating Environment}
 The environment in which this software will be operating in are all
-major operating systems, OS, Windows, Linux. 
+major operating systems, OS, Windows, Linux. This is accomplished using
+\textit{Electron} which allows us to create cross platform binaries
+with the same codebase.
+
 \section{Design and Implementation Constraints}
 The biggest constraints for this software are time and security considerations.
 We need to make sure that our software follows popular, effective, and
 accepted security protocols. Given the time frame in which to create this
 product and the importance that our password manager successfully encrypts
 and protects our passwords, we need to work hard and efficient.
+
 \section{User Documentation}
+
 \section{Assumptions and Dependencies}
 
+
+% END OF OVERALL DESCRIPTION
+
 \chapter{Specific Requirements}
+
 \section{External Interface Requirements}
+
 \subsection{User Interfaces}
 Our product will have a login window that will have a username text box and password
 text box and an enter button. The enter button will be pressed after the password 
 and username are inputted. The login window will blur out the rest of the window
 behind it.
-We will have a minumize, maximize  and exit button in the top left corner. 
+We will have a minimize, maximize  and exit button in the top left corner. 
 we will have tabs along the top that will take you to different password profiles,
 like work, play, etc. 
 There will be a create password button that will create a pop up that has entries
 for a url and a drop down for picking the password profile. 
 \subsection{Hardware Interfaces}
+
 \subsection{Software Interfaces}
+
 \subsection{Communications Interfaces}
+
 \section{Functional Requirements}
+
 \section{Behaviour Requirements}
+
+
+% END OF SPECIFIC REQUIREMENTS
+
+
 \chapter{Other Non-Functional Requirements}
+
 \section{Performance Requirements}
+
 \section{Safety and Security Requirements}
+
 \section{Software Quality Attributes}
+
+
+% END OF NONFUNCTIONAL REQUIREMENTS
+
 
 \chapter{Other Requirements}
 
@@ -149,7 +239,5 @@ for a url and a drop down for picking the password profile.
     \chapter{Data Dictionary}
     \chapter{Group Log}
 \end{appendices}
-
-
 
 \end{document}
