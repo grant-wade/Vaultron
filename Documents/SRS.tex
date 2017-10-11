@@ -1,4 +1,4 @@
-\documentclass{report}
+\documentclass[12pt]{report}
 % \usepackage[utf8]{inputenc} % pictures
 \usepackage[titletoc]{appendix} % appendix
 \usepackage[cm]{fullpage} % full page 
@@ -7,6 +7,10 @@
 \usepackage{enumitem} % list items
 \usepackage{fancyhdr} % page headers
 \usepackage{titlesec} % title format
+\usepackage[margin=1in]{geometry}
+
+%set font style
+\renewcommand\familydefault{\sfdefault}
 
 % Set line spacing
 \renewcommand{\baselinestretch}{1}
@@ -57,10 +61,10 @@
     \end{itemize}
 
     \begin{itemize}
-        \item[] {\Large colton.king@wsu.edu}
-        \item[] {\Large grant.wade@wsu.edu}
-        \item[] {\Large robby.boney@wsu.edu}
-        \item[] {\Large robert.wooner@wsu.edu}
+        \item[] {\Large\texttt colton.king@wsu.edu}
+        \item[] {\Large\texttt grant.wade@wsu.edu}
+        \item[] {\Large\texttt robby.boney@wsu.edu}
+        \item[] {\Large\texttt robert.wooner@wsu.edu}
     \end{itemize}
 \end{multicols}
 
@@ -224,8 +228,16 @@ for a url and a drop down for picking the password profile.
 \chapter{Other Non-Functional Requirements}
 
 \section{Performance Requirements}
+The following requirements are based on a system with minimum specs:
+\begin{itemize}
+    \item Log-in time should not take more than 2 seconds (verifying user)
+    \item New entries into the Vault should be less than 1 second before software can be used again
+    \item Updating entries should take less than 1 second
+    \item Password generation should take less than 1 second
+\end{itemize}
 
 \section{Safety and Security Requirements}
+
 
 \section{Software Quality Attributes}
 
