@@ -4,7 +4,7 @@
 
 
 
-document.getElementById("quit-app").addEventListener("click", function() {
+document.getElementById("quit-app").addEventListener("click", function(e) {
     var ipc = require('electron').ipcRenderer;
     console.log(document.getElementById("quit-app").name);
     ipc.send('shutdown');

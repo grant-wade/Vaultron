@@ -67,6 +67,7 @@ function close_app(){
 	w.close();
 }
 */
+
 ipc.on('shutdown', function(){
     app.quit();
 });
