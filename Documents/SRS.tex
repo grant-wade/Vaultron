@@ -7,7 +7,8 @@
 \usepackage{enumitem} % list items
 \usepackage{fancyhdr} % page headers
 \usepackage{titlesec} % title format
-\usepackage[margin=1in]{geometry}
+% \usepackage[margin=1in]{geometry}
+\usepackage[top=.5in, left=1in, bottom=1in, right=1in]{geometry}
 
 %set font style
 \renewcommand\familydefault{\sfdefault}
@@ -138,8 +139,6 @@ vault for transport
 \textbf{Vault:} Password storage platform created for this project
 
 \section{Document Conventions}
-This document follows the standard IEEE formatting.
-We are doing nothing special in this SRS.
 
 \section{References and Acknowledgments}
 
@@ -160,21 +159,13 @@ will be used to auto-fill in usernames and passwords into any website
 that the user adds to their vault. 
 
 \section{Product Functionality}
-The product is split into two components, desktop application and browser
-extension. 
 
-\subsection{Desktop Application}
 \begin{itemize}
     \item Generate secure passwords (any length or complexity)
     \item Authenticate user to decrypt passwords (required before use)
     \item Generate a \textit{Vault} on first run of software
     \item Allow creation of new entries within the \textit{Vault} (passwords, notes, etc)
     \item Utility to sync users \textit{Vault} between computers (Dropbox, Google Drive, etc)
-\end{itemize}
-\subsection{Browser Extension}
-\begin{itemize}
-    \item Auto fill of information from the \textit{Vault} to the webpage
-    \item Create of new entries in the \textit{Vault}
 \end{itemize}
 
 \section{Users and Characteristics}
@@ -193,21 +184,8 @@ product and the importance that our password manager successfully encrypts
 and protects our passwords, we need to work hard and efficient.
 
 \section{User Documentation}
-We will provide a simple help page that will go over how to use and run 
-our software. The help page will go over how to create and add a new entry in the 
-Vault. How to create a new password. How to delete an old entry. How to update 
-an entry.
 
 \section{Assumptions and Dependencies}
-\begin{itemize}
-    \item We assume that users will have at most 1000 passwords
-    \item We assume that users will have a computer with minimum specifications
-    \item We assume that the Node.js standard library won't drastically change
-    \item We assume that Electron's standard library won't drastically change
-    \item We assume that with a good master password, user's passwords will be secure
-    
-\end{itemize}
-
 
 
 % END OF OVERALL DESCRIPTION
@@ -227,7 +205,6 @@ like work, play, etc.
 There will be a create password button that will create a pop up that has entries
 for a url and a drop down for picking the password profile. 
 \subsection{Hardware Interfaces}
-We have no hardware interface that we need to run our software.
 
 \subsection{Software Interfaces}
 
