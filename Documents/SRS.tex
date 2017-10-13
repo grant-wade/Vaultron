@@ -13,7 +13,7 @@
 % user@host~$ bibtex file.tex 
 % user@host~$ pdflatex file.tex
 %
-\usepackage[style=numeric,backend=bibtex]{biblatex}
+\usepackage[backend=bibtex]{biblatex}
 \addbibresource{SRS.bib}
 
 % \usepackage[margin=1in]{geometry}
@@ -160,6 +160,7 @@ vault for transport
 
 \section{References and Acknowledgments}
 
+    \nocite{*}
     \printbibliography[heading=none]
 
 
