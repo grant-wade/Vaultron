@@ -7,6 +7,23 @@
 \usepackage{enumitem} % list items
 \usepackage{fancyhdr} % page headers
 \usepackage{titlesec} % title format
+ 
+% bibliography stuff, to compile use
+% user@host~$ pdflatex file.tex
+% user@host~$ bibtex file.tex 
+%
+\usepackage[style=numeric,backend=bibtex]{biblatex}
+\addbibresource{SRS.bib}
+\usepackage{lipsum}
+
+\usepackage{hyperref} % lets clickable links be used for the table of contents
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
 
 % Set line spacing
 \renewcommand{\baselinestretch}{1}
@@ -136,6 +153,9 @@ vault for transport
 \section{Document Conventions}
 
 \section{References and Acknowledgments}
+
+    \printbibliography[heading=none]
+
 
 % END OF INTRODUCTION
 
