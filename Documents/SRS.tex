@@ -8,6 +8,8 @@
 \usepackage{fancyhdr} % page headers
 \usepackage{titlesec} % title format
 
+\usepackage{tabu} % allows for tables with width control
+
 % Setting the margins
 \usepackage[top=.5in, left=1in, bottom=1in, right=1in]{geometry}
  
@@ -359,6 +361,24 @@ memory when they are not.
 
 \begin{appendices}
     \chapter{Data Dictionary}
+
+    \begin{tabu} to 0.97\textwidth { | X[l] | X[l] | }
+        \hline
+        Vaultron & our security software  \\
+        \hline
+        Electron  & javascript wrapper for application development  \\
+        \hline
+        Node.js  & javascript package for backend related tasks(i.e reading, writing, ect) \\
+        \hline
+        Basic User  & Vaultron user with minimal password requirements \\
+        \hline
+        Power User  & Vaultron user with extreme password requirements \\
+        \hline
+        PBKDF2 &  key derivation functions with a sliding computational cost used for encryption. \\
+        \hline
+    \end{tabu}
+
+
     \chapter{Group Log}
 \end{appendices}
 
