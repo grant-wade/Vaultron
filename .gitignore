@@ -13,6 +13,7 @@ yarn-error.log*
 *.log
 *.toc
 *.synctex.gz
+*.pdf
 
 # Runtime data
 pids
