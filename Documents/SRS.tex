@@ -37,6 +37,9 @@
 % Set indent size
 \setlength\parindent{0pt}
 
+% column spacing
+\setlength\columnsep{4pt}
+
 % Title format
 \titleformat{\chapter}{\Huge\bf}{\thechapter}{20px}{\Huge\bf}
 
@@ -65,6 +68,7 @@
 \end{flushright}
 
 \begin{multicols}{3}
+    \noindent
     \begin{itemize}
         \item[] {\Large Colton King}
         \item[] {\Large Grant Wade}
@@ -164,6 +168,7 @@ vault for transport
 
 \textbf{Vault:} Password storage platform created for this project
 
+
 \section{Document Conventions}
 IEEE formatting requirements were generally followed when writing this document.
 Notable conventions include:
@@ -243,6 +248,28 @@ and protects our passwords, we need to work hard and efficient.
 \section{User Documentation}
 
 \section{Assumptions and Dependencies}
+Assumptions for \textit{Vaultron} are split into two categories, assumptions
+being made about the user and assumptions that are required about components
+that are used to create it. 
+
+\subsection{Assumptions about the User}
+The assumptions that we are making for the design of this software for the users is
+that the users will be using a secure password, and they will not leave
+their computers unsecured. On the password side, assumptions have to be
+made since we can only put so many constraints on the contents of the
+master password. Forcing complexity can result in the user forgetting 
+their master password causing them to loose all access to data stored in
+\textit{The Vault}. The user leaving their computer unlocked with 
+\textit{Vaultron} open could result in someone with access to their computer
+copying all the passwords they have stored in \textit{The Vault}. Overall
+we have to assume the users will do their best to secure their passwords.
+
+\subsection{Assumptions about the Software}
+On the software side we are making the assumption that any components that are
+going to be used will not change quickly and without notice. \textit{Vaultron} 
+as a whole requires \textit{Node.js} and \textit{Electron} to function, so if 
+either were to change it would require a rewrite of the core components of 
+this product.
 
 
 % END OF OVERALL DESCRIPTION
@@ -310,6 +337,16 @@ The following requirements are based on a system with minimum specs:
 \end{itemize}
 
 \section{Safety and Security Requirements}
+Safety and security are the main goals of \textit{Vaultron}, if it is
+unable to safely store passwords there is no reason to use it. Therefore
+we must abide by some rules. First, any keys created must be generated
+from a cryptographically secure random number generator. Our implementation
+uses the \textit{Node.js} \texttt{randomBytes()} function to generate
+secure random numbers. Secondly, no decrypted passwords will ever be
+on any storage device. If a decrypted password was ever stored on a drive
+there is a chance that it is recoverable, so passwords will only be 
+decrypted on the fly when they are needed and promptly removed from
+memory when they are not.
 
 
 \section{Software Quality Attributes}
