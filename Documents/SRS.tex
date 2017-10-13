@@ -1,4 +1,4 @@
-\documentclass[12pt]{report}
+\documentclass[11pt]{report}
 % \usepackage[utf8]{inputenc} % pictures
 \usepackage[titletoc]{appendix} % appendix
 \usepackage[cm]{fullpage} % full page 
@@ -7,6 +7,9 @@
 \usepackage{enumitem} % list items
 \usepackage{fancyhdr} % page headers
 \usepackage{titlesec} % title format
+
+% Setting the margins
+\usepackage[top=.5in, left=1in, bottom=1in, right=1in]{geometry}
  
 % bibliography stuff, to compile use
 % user@host~$ pdflatex file.tex
@@ -16,8 +19,7 @@
 \usepackage[backend=bibtex]{biblatex}
 \addbibresource{SRS.bib}
 
-% \usepackage[margin=1in]{geometry}
-\usepackage[top=.5in, left=1in, bottom=1in, right=1in]{geometry}
+% Create clickable table of contents
 \usepackage{hyperref}
 \hypersetup {colorlinks,
     citecolor=black,
@@ -28,8 +30,6 @@
 
 %set font style
 \renewcommand\familydefault{\sfdefault}
-
-
 
 % Set line spacing
 \renewcommand{\baselinestretch}{1}
@@ -107,11 +107,15 @@ compatibility will be achieved using electron and node.js.
 This section will describe who the intended audience for the
 password manager will be and describe the purpose of the
 project in depth.
+
+
 \section{Document Purpose}
 The product we are writing this SRS document for is the cryptographically
 secure cross platform password manager Version 0.0.1 (Vaultron). This password manager 
 will create strong passwords and encrypt them. It will remember the password 
 for the website it is being created for.
+
+
 \section{Project Scope}
 This software is a password manager that creates cryptographically secure 
 passwords. It will store the hashed passwords in a json file for safe keeping.
@@ -127,6 +131,8 @@ that they will not have to remember. Not needing to remember allows for a strong
 password that has a very little chance of being cracked. The user only needs to sign
 in with their master password and copy and paste the desired password from the 
 vault into the website, or other password field.
+
+
 \section{Intended Audience and Document Overview}
 Client: The intended audience of this software is anyone that uses the internet 
 and currently keeps track of their passwords by hand or lets the browser
@@ -141,6 +147,8 @@ The rest of the document contains all of the specifications for the
 software, which includes product functionality, operating environment,
 interface design, functional requirements, behavioral requirements, 
 security requirements and other product details.
+
+
 \section{Definitions, Acronyms and Abbreviations}
 \textbf{CSS:} Cascading Style Sheets, used to style our electron application
 
@@ -191,7 +199,14 @@ that the user adds to their vault.
 \end{itemize}
 
 \section{Users and Characteristics}
-The users for our software will only need a basic knowledge of how to use a computer to use this product. Our users will be a vast majority of people that want to only think about one password rather than keeping track of a different password for every account they have. All users will be important and every user should be confident in the security of their passwords and they should also be confident that there will be enough space to have all the passwords that they need to store. \\
+The users for our software will only need a basic knowledge of how to use 
+a computer to use this product. Our users will be a vast majority of people 
+that want to only think about one password rather than keeping track of a 
+different password for every account they have. All users will be important 
+and every user should be confident in the security of their passwords and 
+they should also be confident that there will be enough space to have all 
+the passwords that they need to store.
+
 Different Types of users:
 \begin{itemize}
     \item Basic User
