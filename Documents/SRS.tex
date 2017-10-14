@@ -34,6 +34,14 @@
     urlcolor=black
 }
 
+% Fix itemize spacing
+\newenvironment{myitemize}
+{ \begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}     }
+{ \end{itemize}                  } 
+
 %set font style
 \renewcommand\familydefault{\sfdefault}
 
@@ -209,14 +217,14 @@ that the user adds to their vault.
 
 \section{Product Functionality}
 
-\begin{itemize}
+\begin{myitemize}
     \item Generate secure passwords (any length or complexity)
     \item Authenticate user to decrypt passwords (required before use)
     \item Generate a \textit{Vault} on first run of software
     \item Search through passwords using either the website name or username
     \item Allow creation of new entries within the \textit{Vault} (passwords, notes, etc)
     \item Utility to sync users \textit{Vaults} between computers (Dropbox, Google Drive, etc)
-\end{itemize}
+\end{myitemize}
 
 
 \section{Users and Characteristics}
@@ -229,16 +237,16 @@ they should also be confident that there will be enough space to have all
 the passwords that they need to store.
 
 Different Types of users:
-\begin{itemize}
+\begin{myitemize}
     \item Basic User
-        \begin{itemize}
+        \begin{myitemize}
             \item The user that will only have a few passwords saved in the vault
-        \end{itemize}
+        \end{myitemize}
     \item Power Users
-        \begin{itemize}
+        \begin{myitemize}
             \item Users that have over 1000 passwords in the vault
-        \end{itemize}
-\end{itemize}
+        \end{myitemize}
+\end{myitemize}
 
 
 \section{Operating Environment}
@@ -246,23 +254,23 @@ Different Types of users:
 mainly due to \textit{Electron's} requirements. The base system specs are as follow:
 \\ \\ 
 \textbf{Mac}
-\begin{itemize}
+\begin{myitemize}
     \item OS: 64bit
     \item Minimum Version: macOS 10.9
-\end{itemize}
+\end{myitemize}
 
 \textbf{Windows}
-\begin{itemize}
+\begin{myitemize}
     \item OS: 32bit (x86) or 64bit(amd64)
     \item Minimum Version: Windows 7 and later
-\end{itemize}
+\end{myitemize}
 
 \textbf{Linux}
-\begin{itemize}
+\begin{myitemize}
     \item OS: 32bit (i686) or 64bit(amd64)
     \item Tested Version: Ubuntu 12.04 
     \item Valid Versions: Ubuntu 12.04 and later, Fedora 21, Debian 8
-\end{itemize}
+\end{myitemize}
 
 \begin{center}
 \includegraphics[scale=0.77]{operating-environment.png}
@@ -372,13 +380,13 @@ passwords to another computer to keep passwords up to date everywhere.
 
 \section{Performance Requirements}
 The following requirements are based on a system with minimum specs:
-\begin{itemize}
+\begin{myitemize}
     \item Log-in time should not take more than 2 seconds (verifying user)
     \item New entries into the Vault should be less than 1 second before software can be used again
     \item Updating entries should take less than 1 second
     \item Password generation should take less than 1 second
     \item GUI freezes should not last for more than 1 second
-\end{itemize}
+\end{myitemize}
 
 
 \section{Safety and Security Requirements}
@@ -402,7 +410,7 @@ the users master password, and stored passwords will be encrypted using
 SHA-512 using a master key that is descrypted from the master password.
 Salting will also be used to enhance the security of each password stored.
 
-\begin{itemize}
+\begin{myitemize}
     \item PBKDF2 password hashing for authenticaiton of master password
     \item SHA-512 + salting of stored passwords
     \item Decrypted passwords will never be stored on the computers drive
@@ -410,7 +418,7 @@ Salting will also be used to enhance the security of each password stored.
     \item Secure transfer of \textit{The Vault} between computers
     \item There are no specific certifications that must be followed
     \item The issue of privacy will be dealt with by storing the vault in a secure place in the users home directory
-\end{itemize}
+\end{myitemize}
 
 
 \section{Software Quality Attributes}
