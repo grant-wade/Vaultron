@@ -1,7 +1,7 @@
 \documentclass[11pt]{report}
 % \usepackage[utf8]{inputenc} % pictures
 \usepackage[titletoc]{appendix} % appendix
-\usepackage[cm]{fullpage} % full page 
+%\usepackage[cm]{fullpage} % full page 
 \usepackage{nopageno} % Disable bottom page #
 \usepackage{multicol} % multicolumn 
 \usepackage{enumitem} % list items
@@ -121,16 +121,16 @@ project in depth.
 
 \section{Document Purpose}
 The product we are writing this SRS document for is the cryptographically
-secure cross platform password manager Version 0.0.1 (Vaultron). This password manager 
+secure cross platform password manager Version 0.0.1 (\textit{Vaultron}). This password manager 
 will create strong passwords and encrypt them. It will remember the password 
 for the website it is being created for.
 
 
 \section{Project Scope}
 This software is a password manager that creates cryptographically secure 
-passwords. It will store the hashed passwords in a json file for safe keeping.
+passwords. It will store the hashed passwords in a JSON file for safe keeping.
 There can be multiple profiles, each one will have a master password of its own 
-that will unlock the vault gaining access to the passwords. The master password
+that will unlock \textit{The Vault} gaining access to the passwords. The master password
 will be created by the user so that they can remember it. The password manager 
 can however create a good master password that the user can write down to remember.
 the master password will not be sent through email or text so that there will
@@ -165,9 +165,6 @@ security requirements and other product details.
 \textbf{Electron:} Cross platform desktop application development environment
 using HTML, CSS, and JavaScript
 
-\textbf{Hardened Mode:} A mode within the product that enable encryption of entire
-vault for transport
-
 \textbf{HTML:} HyperText Markup Language, used to design our electron application
 
 \textbf{JavaScript:} Programming language used on the web and Electron
@@ -201,7 +198,7 @@ niche in the password storage and serving field that \textit{1Password}
 and \textit{LastPass} fill. Thus it is in the same family as
 the two products previously mentioned, a system that stores passwords
 securely and allows later retrieval. This product will be implemented in
-two main parts. One, a desktop application that will serve as the \textit{vault}
+two main parts. One, a desktop application that will serve as the \textit{Vault}
 storing the passwords, creating the passwords, and allowing later access
 to the passwords. The second main part is the browser extensions that
 will be used to auto-fill in usernames and passwords into any website
@@ -209,15 +206,18 @@ that the user adds to their vault.
 
 \includegraphics[scale=0.75]{context-diagram}
 
+
 \section{Product Functionality}
 
 \begin{itemize}
     \item Generate secure passwords (any length or complexity)
     \item Authenticate user to decrypt passwords (required before use)
     \item Generate a \textit{Vault} on first run of software
+    \item Search through passwords using either the website name or username
     \item Allow creation of new entries within the \textit{Vault} (passwords, notes, etc)
-    \item Utility to sync users \textit{Vault} between computers (Dropbox, Google Drive, etc)
+    \item Utility to sync users \textit{Vaults} between computers (Dropbox, Google Drive, etc)
 \end{itemize}
+
 
 \section{Users and Characteristics}
 The users for our software will only need a basic knowledge of how to use 
@@ -240,68 +240,9 @@ Different Types of users:
         \end{itemize}
 \end{itemize}
 
+
 \section{Operating Environment}
-The environment in which this software will be operating in are all
-major operating systems, OS, Windows, Linux. This is accomplished using
-\textit{Electron} which allows us to create cross platform binaries
-with the same codebase.
-
-\section{Design and Implementation Constraints}
-The biggest constraints for this software are time and security considerations.
-We need to make sure that our software follows popular, effective, and
-accepted security protocols. Given the time frame in which to create this
-product and the importance that our password manager successfully encrypts
-and protects our passwords, we need to work hard and efficient.
-
-\section{User Documentation}
-We will provide a simple help page that will go over how to use and run 
-our software. The help page will go over how to create and add a new entry in the 
-Vault. How to create a new password. How to delete an old entry. How to update 
-an entry.
-\section{Assumptions and Dependencies}
-Assumptions for \textit{Vaultron} are split into two categories, assumptions
-being made about the user and assumptions that are required about components
-that are used to create it. 
-
-\subsection{Assumptions about the User}
-The assumptions that we are making for the design of this software for the users is
-that the users will be using a secure password, and they will not leave
-their computers unsecured. On the password side, assumptions have to be
-made since we can only put so many constraints on the contents of the
-master password. Forcing complexity can result in the user forgetting 
-their master password causing them to loose all access to data stored in
-\textit{The Vault}. The user leaving their computer unlocked with 
-\textit{Vaultron} open could result in someone with access to their computer
-copying all the passwords they have stored in \textit{The Vault}. Overall
-we have to assume the users will do their best to secure their passwords.
-
-\subsection{Assumptions about the Software}
-On the software side we are making the assumption that any components that are
-going to be used will not change quickly and without notice. \textit{Vaultron} 
-as a whole requires \textit{Node.js} and \textit{Electron} to function, so if 
-either were to change it would require a rewrite of the core components of 
-this product.
-
-
-% END OF OVERALL DESCRIPTION
-
-\chapter{Specific Requirements}
-
-\section{External Interface Requirements}
-
-\subsection{User Interfaces}
-Our product will have a login window that will have a username text box and password
-text box and an enter button. The enter button will be pressed after the password 
-and username are inputted. The login window will blur out the rest of the window
-behind it.
-We will have a minimize, maximize  and exit button in the top left corner. 
-we will have tabs along the top that will take you to different password profiles,
-like work, play, etc. 
-There will be a create password button that will create a pop up that has entries
-for a url and a drop down for picking the password profile. 
-
-\subsection{Hardware Interfaces}
-Vaultron works on a wide variety of systems with minimal requirement 
+\textit{Vaultron} works on a wide variety of systems with minimal requirement 
 mainly due to \textit{Electron's} requirements. The base system specs are as follow:
 \\ \\ 
 \textbf{Mac}
@@ -324,11 +265,98 @@ mainly due to \textit{Electron's} requirements. The base system specs are as fol
 \end{itemize}
 
 
+\section{Design and Implementation Constraints}
+The biggest constraints for this software are time and security considerations.
+We need to make sure that our software follows popular, effective, and
+accepted security protocols. Given the time frame in which to create this
+product and the importance that our password manager successfully encrypts
+and protects our passwords, we need to work hard and efficient.
+
+
+\section{User Documentation}
+We will provide a simple help page that will go over how to use and run 
+our software. The help page will go over how to create and add a new entry in the 
+Vault. How to create a new password. How to delete an old entry. How to update 
+an entry.
+
+
+\section{Assumptions and Dependencies}
+Assumptions for \textit{Vaultron} are split into two categories, assumptions
+being made about the user and assumptions that are required about components
+that are used to create it. 
+
+
+\subsection{Assumptions about the User}
+The assumptions that we are making for the design of this software for the users is
+that the users will be using a secure password, and they will not leave
+their computers unsecured. On the password side, assumptions have to be
+made since we can only put so many constraints on the contents of the
+master password. Forcing complexity can result in the user forgetting 
+their master password causing them to loose all access to data stored in
+\textit{The Vault}. The user leaving their computer unlocked with 
+\textit{Vaultron} open could result in someone with access to their computer
+copying all the passwords they have stored in \textit{The Vault}. Overall
+we have to assume the users will do their best to secure their passwords.
+
+
+\subsection{Assumptions about the Software}
+On the software side we are making the assumption that any components that are
+going to be used will not change quickly and without notice. \textit{Vaultron} 
+as a whole requires \textit{Node.js} and \textit{Electron} to function, if 
+either were to change it would require a rewrite of the core components of 
+this product.
+
+
+% END OF OVERALL DESCRIPTION
+
+\chapter{Specific Requirements}
+
+\section{External Interface Requirements}
+
+\subsection{User Interfaces}
+Our product will have a login window that will have a username text box and password
+text box and an enter button. The enter button will be pressed after the password 
+and username are inputted. The login window will blur out the rest of the window
+behind it.
+We will have a minimize, maximize  and exit button in the top left corner. 
+we will have tabs along the top that will take you to different password profiles,
+like work, play, etc. 
+There will be a create password button that will create a pop up that has entries
+for a url and a drop down for picking the password profile. 
+
+\subsection{Hardware Interfaces}
+\textit{Vaultron} has no specific hardware interface requirements, everything is
+run within the operating system of the computer. 
+
+
 \subsection{Software Interfaces}
+The main interface between \textit{Vaultron} and any other software is it's
+usage of \textit{Node.js} and \textit{Electron}. They deal with system calls 
+for many things including generating pseudo-random secure bits for salt's and 
+master keys. Files will also be stored within the filesystem of the computer 
+to allow storage of passwords and other data. They allow us to develop for
+any operating systems they support without having to write system specific
+code decreasing our time working on compatibility. 
+
 
 \subsection{Communications Interfaces}
+Since \textit{Vaultron} is a password manager encryption has to be used
+to store the passwords securely to prevent passwords from being revealed.
+The master password that the user creates to secure their \textit{Vault}
+will be hashed using PBKDF2 with a pre-generated salt that is unique to
+their profile. All stored passwords will be encrypted using the SHA-512 
+algorithm. Usernames for stored services will also be encrypted.
+
+
+Other communication interfaces that might be used include, some system
+to facilitate the transfer of a users \textit{Vault's} to another computer.
+The current options for that include \textit{Google Drive, Dropbox, Nextcloud}
+and \textit{Syncthing}. One of these would be used to sync all of a users
+passwords to another computer to keep passwords up to date everywhere.
+
 
 \section{Functional Requirements}
+
 
 \section{Behaviour Requirements}
 
@@ -345,7 +373,9 @@ The following requirements are based on a system with minimum specs:
     \item New entries into the Vault should be less than 1 second before software can be used again
     \item Updating entries should take less than 1 second
     \item Password generation should take less than 1 second
+    \item GUI freezes should not last for more than 1 second
 \end{itemize}
+
 
 \section{Safety and Security Requirements}
 Safety and security are the main goals of \textit{Vaultron}, if it is
@@ -360,10 +390,60 @@ decrypted on the fly when they are needed and promptly removed from
 memory when they are not. Third, all passwords will be stored in their
 hashed form within a JSON file. If this file were to be stolen there
 would be no direct path to take to decrypt the password hashes because
-our implementation will not expose the master decryption key ever.
+our implementation will not expose the master decryption key ever. 
+Fourth, \textit{Vaultron} will follow the best practices currently in the
+industry to safely store users passwords as to minimize possible threats
+to the users security. This includes using pbkdf2 hashing to verify
+the users master password, and stored passwords will be encrypted using
+SHA-512 using a master key that is descrypted from the master password.
+Salting will also be used to enhance the security of each password stored.
+
+\begin{itemize}
+    \item PBKDF2 password hashing for authenticaiton of master password
+    \item SHA-512 + salting of stored passwords
+    \item Decrypted passwords will never be stored on the computers drive
+    \item Safeguards to prevent tampering with software
+    \item Secure transfer of \textit{The Vault} between computers
+    \item There are no specific certifications that must be followed
+    \item The issue of privacy will be dealt with by storing the vault in a secure place in the users home directory
+\end{itemize}
 
 
 \section{Software Quality Attributes}
+This software can be broken down into a couple quality attributes,
+reliability, security, cross platform compatibility, and portability.
+
+\subsection{Reliability}
+\textit{Vaultron} should be able to accomplish all of the features
+mentions in this document without crashing or otherwise corrupting
+\textit{The Vault}. If the vault were ever to be corrupted all
+passwords could be lost of otherwise never recovered. This is something
+that during the developement we are striving to ensure. Backups will
+be taken of the vault periodically to potentailly save the user's
+passwords should anything happen to their current \textit{Vault}.
+
+\subsection{Security}
+Since the security implications of this software are vast
+\textit{Vaultron} must continue to be updated to follow the lastest
+security standards. This will be accomplished by storing what version
+of our encryption is used on each password so decryption will always
+be possible even once a new standard is released. Users will also
+be given the opportunity to update all of their passwords to this
+new standard following release.
+
+\subsection{Cross Platform Compatibility}
+Cross platform compatibility is almost entirely covered by the use
+of \textit{Electron}. It is able to create binary files for Windows,
+MacOS, and many Linux distrobutions. If \textit{Electrion}, one day,
+does not cover all of the needs that \textit{Vaultron} requires other
+options will be considered. 
+
+\subsection{Portability}
+Portability is being considered the ability to transfer users passwords
+between their computers so everything is availiable all the time. The
+current thoughts on how this can be accomplished is the use of services
+like \textit{Dropbox}, \textit{Google Drive}, or maybe an open source
+solution like \textit{Nextcloud}, or \textit{Syncthing}. 
 
 
 % END OF NONFUNCTIONAL REQUIREMENTS
