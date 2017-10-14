@@ -8,6 +8,10 @@
 \usepackage{fancyhdr} % page headers
 \usepackage{titlesec} % title format
 
+% Graphics library for displaying pictures
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
 \usepackage{tabu} % allows for tables with width control
 
 % Setting the margins
@@ -203,6 +207,8 @@ to the passwords. The second main part is the browser extensions that
 will be used to auto-fill in usernames and passwords into any website
 that the user adds to their vault. 
 
+\includegraphics[scale=0.75]{context-diagram}
+
 \section{Product Functionality}
 
 \begin{itemize}
@@ -369,6 +375,8 @@ memory when they are not.
         Electron  & javascript wrapper for application development  \\
         \hline
         Node.js  & javascript package for backend related tasks(i.e reading, writing, ect) \\
+        \hline
+        sqlite  & SQL database being used to store passwords and keys\\
         \hline
         Basic User  & Vaultron user with minimal password requirements \\
         \hline
