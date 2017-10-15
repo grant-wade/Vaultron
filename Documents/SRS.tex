@@ -152,7 +152,7 @@ vault into the website, or other password field.
 
 
 \section{Intended Audience and Document Overview}
-Client: The intended audience of this software is anyone that uses the internet 
+Client: The intended audience of this software is anyone that uses the Internet 
 and currently keeps track of their passwords by hand or lets the browser
 keep track of them. This software will offer a safe, secure, and isolated
 way to store any passwords. Security is our number one priority, if something
@@ -185,7 +185,7 @@ IEEE formatting requirements were generally followed when writing this document.
 Notable conventions include:
 
 \begin{itemize}
-    \item All companies, products and programs are mentioned in itallics (i.e. \textit{electron})
+    \item All companies, products and programs are mentioned in italics (i.e. \textit{electron})
     
 \end{itemize}
 
@@ -345,7 +345,7 @@ run within the operating system of the computer.
 The main interface between \textit{Vaultron} and any other software is it's
 usage of \textit{Node.js} and \textit{Electron}. They deal with system calls 
 for many things including generating pseudo-random secure bits for salt's and 
-master keys. Files will also be stored within the filesystem of the computer 
+master keys. Files will also be stored within the file system of the computer 
 to allow storage of passwords and other data. They allow us to develop for
 any operating systems they support without having to write system specific
 code decreasing our time working on compatibility. 
@@ -372,10 +372,10 @@ passwords to another computer to keep passwords up to date everywhere.
 This function will allow the user to generate a secure password of any length or 
 complexity.
 \subsection{Authenticate User to Decrypt Passwords}
-This function will verify who the user is before dycrpting any passwords, utilizing 
+This function will verify who the user is before decrypting any passwords, utilizing 
 the master password provided by the user.
 \subsection{Generate a Vault on First Run of Software}
-This function will create a Vault everytime a new user is registered for an account 
+This function will create a Vault every time a new user is registered for an account 
 with Vaultron. This is a database created for the user to be able to create new
 passwords, search, delete, copy (to the clipboard), and manipulate their passwords
 for any account as they deem necessary.
@@ -387,13 +387,13 @@ the password.
 This function allows the user to create new entries to there previously created 
 database. They will need to input the website that is using the password and
 username that accompanies the password.  They can either store a password that
-they provide or user the password generater and generate a new password.
+they provide or user the password generator and generate a new password.
 \subsection{Syncing Users Vaults Between Computers}
 This function allows the user to acquire their Vaultron account from any computer 
 they want, utilizing which ever resource they are most comfortable using. (Dropbox, 
 Google Drive, etc)
 
-\section{Behaviour Requirements}
+\section{Behavior Requirements}
 In our Use Case Diagram the actors involved are the user and the developer. The developer will monitor the 
 different function times for all the functions that the user will interact with such as logging in, decrypting
 passwords, searching passwords, updating entries, adding entries, and generating secure passwords. 
@@ -441,7 +441,7 @@ SHA-512 using a master key that is descrypted from the master password.
 Salting will also be used to enhance the security of each password stored.
 
 \begin{myitemize}
-    \item PBKDF2 password hashing for authenticaiton of master password
+    \item PBKDF2 password hashing for authentication of master password
     \item SHA-512 + salting of stored passwords
     \item Decrypted passwords will never be stored on the computers drive
     \item Safeguards to prevent tampering with software
@@ -460,13 +460,13 @@ reliability, security, cross platform compatibility, and portability.
 mentions in this document without crashing or otherwise corrupting
 \textit{The Vault}. If the vault were ever to be corrupted all
 passwords could be lost of otherwise never recovered. This is something
-that during the developement we are striving to ensure. Backups will
-be taken of the vault periodically to potentailly save the user's
+that during the development we are striving to ensure. Backups will
+be taken of the vault periodically to potentially save the user's
 passwords should anything happen to their current \textit{Vault}.
 
 \subsection{Security}
 Since the security implications of this software are vast
-\textit{Vaultron} must continue to be updated to follow the lastest
+\textit{Vaultron} must continue to be updated to follow the latest
 security standards. This will be accomplished by storing what version
 of our encryption is used on each password so decryption will always
 be possible even once a new standard is released. Users will also
@@ -476,13 +476,13 @@ new standard following release.
 \subsection{Cross Platform Compatibility}
 Cross platform compatibility is almost entirely covered by the use
 of \textit{Electron}. It is able to create binary files for Windows,
-MacOS, and many Linux distrobutions. If \textit{Electrion}, one day,
+MacOS, and many Linux distributions. If \textit{Electron}, one day,
 does not cover all of the needs that \textit{Vaultron} requires other
 options will be considered. 
 
 \subsection{Portability}
 Portability is being considered the ability to transfer users passwords
-between their computers so everything is availiable all the time. The
+between their computers so everything is available all the time. The
 current thoughts on how this can be accomplished is the use of services
 like \textit{Dropbox}, \textit{Google Drive}, or maybe an open source
 solution like \textit{Nextcloud}, or \textit{Syncthing}. 
