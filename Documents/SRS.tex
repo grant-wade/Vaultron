@@ -1,7 +1,6 @@
 \documentclass[11pt]{report}
 % \usepackage[utf8]{inputenc} % pictures
 \usepackage[titletoc]{appendix} % appendix
-%\usepackage[cm]{fullpage} % full page 
 \usepackage{nopageno} % Disable bottom page #
 \usepackage{multicol} % multicolumn 
 \usepackage{enumitem} % list items
@@ -178,6 +177,8 @@ using HTML, CSS, and JavaScript
 \textbf{JavaScript:} Programming language used on the web and Electron
 
 \textbf{Vault:} Password storage platform created for this project
+
+\textbf{PBKDF2:} Password Based Key Derivation Function v2
 
 
 \section{Document Conventions}
@@ -368,35 +369,46 @@ passwords to another computer to keep passwords up to date everywhere.
 
 
 \section{Functional Requirements}
+
 \subsection{Generate Secure Passwords}
-This function will allow the user to generate a secure password of any length or 
-complexity.
+Password generation will allow the user to generate a secure password of any length or 
+complexity. This will be accomplished using the secure bytes provided by every
+operating system. There will be options to include special characters, uppercase,
+lowercase, and numbers when generating the passwords.
+
 \subsection{Authenticate User to Decrypt Passwords}
-This function will verify who the user is before dycrpting any passwords, utilizing 
-the master password provided by the user.
+This function will verify who the user is before decrypting any passwords, utilizing 
+the master password provided by the user. Once the master password is verified
+the master key will be decrypted to make all passwords avaliable.
+
 \subsection{Generate a Vault on First Run of Software}
 This function will create a Vault everytime a new user is registered for an account 
 with Vaultron. This is a database created for the user to be able to create new
 passwords, search, delete, copy (to the clipboard), and manipulate their passwords
 for any account as they deem necessary.
+
 \subsection{Search Through Passwords}
 This function will allow the user to search through their already created passwords
 with either the website the password is attached to or the username that goes with 
 the password. 
+
 \subsection{Creation of New Entries}
 This function allows the user to create new entries to there previously created 
 database. They will need to input the website that is using the password and
 username that accompanies the password.  They can either store a password that
-they provide or user the password generater and generate a new password.
+they provide or use the password generater and generate a new password.
+
 \subsection{Syncing Users Vaults Between Computers}
 This function allows the user to acquire their Vaultron account from any computer 
 they want, utilizing which ever resource they are most comfortable using. (Dropbox, 
 Google Drive, etc)
 
+
 \section{Behaviour Requirements}
 In our Use Case Diagram the actors involved are the user and the developer. The developer will monitor the 
 different function times for all the functions that the user will interact with such as logging in, decrypting
 passwords, searching passwords, updating entries, adding entries, and generating secure passwords. 
+
 \subsection{Use Case View}
 \begin{center}
 \includegraphics[scale=0.72]{use-case.png}
@@ -519,6 +531,18 @@ solution like \textit{Nextcloud}, or \textit{Syncthing}.
 
 
     \chapter{Group Log}
+    \begin{itemize}
+        \item Meeting 1: Sunday, October 8th: Discussed project ideas and began writing SRS. 3 hours.
+        \item Meeting 2: Monday, October 9th: Finished first two chapters of SRS. 1 hour.
+        \item Meeting 3: Wednesday, October 11th: Wrote majority of chapters 3 and 4. 2 hours.
+
+        \item Colton: Wrote sections 1.2, 2.6, 3.1.1, 3.1.2, 4.1, Data dictionary
+        \item Grant: Designed SRS, and wrote sections 1.3, 2.7, 3.1.4, 4.2, 4.3,
+        \item Rob: Designed SRS, and wrote sections 2.3, 2.5, 3.1.3, 3.2, 3.3
+        \item Robby: Designed diagrams, references, and wrote sections 1.5, 1.6, 2.1, 2.4, 3.3.1.
+    \end{itemize}
+
+
 \end{appendices}
 
 \end{document}
