@@ -1,6 +1,6 @@
 'use strict';
 const electron = require('electron');
-const remote = require('electron').remote;
+// const remote = require('electron').remote;
 const app = electron.app;
 var ipc = require('electron').ipcMain; 
 
@@ -21,25 +21,25 @@ function onClosed() {
 function createMainWindow() {
 	const win = new electron.BrowserWindow({
 		frame: true,	  // removes chrome frame on all platforms
-		resizable: false,  // makes sure window cannot be resized
+		resizable: true,  // makes sure window cannot be resized
 		width: win_size*0.8,
-		height: win_size*0.65
+		height: win_size*0.65,
 	});
-
-	win.loadURL(`file://${__dirname}/index.html`);
+	
+	win.loadURL(`file://${__dirname}/../renderer/login.html`);
 	win.on('closed', onClosed);
 	return win;
 }
 
 // change the main window to accomodate the main app rather then login
-function change_window(toWindow){
-	if (toWindow == "login"){
-		console.log('changing to login window');
-	}
-	else if (toWindow == "main"){
-		console.log('changing to main window');
-	}
-}
+// function change_window(toWindow){
+// 	if (toWindow == "login"){
+// 		console.log('changing to login window');
+// 	}
+// 	else if (toWindow == "main"){
+// 		console.log('changing to main window');
+// 	}
+// }
 
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
@@ -55,23 +55,14 @@ app.on('activate', () => {
 
 app.on('ready', () => {
 	mainWindow = createMainWindow();
-	
 });
 
-
-/* Close App
-close main window on call
-Author: robby
-
-
-function close_app(){
-	let w = remote.getCurrentWindow();
-	w.close();
-}
-*/
 
 ipc.on('shutdown', function(){
     app.quit();
 });
 
 
+ipc.on('getPath', function (event, arg) {
+	event.sender.send('getPathReply', app.getPath('userData'))
+})

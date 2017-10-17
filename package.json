@@ -10,7 +10,7 @@
     "email": "grant.wade@wsu.edu"
   },
   "scripts": {
-    "start": "electron .",
+    "start": "electron src/main/app.js",
     "build": "electron-packager . --out=dist --asar --overwrite --all"
   },
   "dependencies": {

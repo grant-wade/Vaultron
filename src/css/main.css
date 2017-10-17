@@ -16,10 +16,12 @@ body {
 	max-height:100%;
 	margin: 0 auto;
 	display: grid;
-  grid-template-columns: repeat(6, auto);
+  grid-template-columns: repeat(6, 16.67%);
+  /* grid-template-columns: .5fr auto; */
   grid-gap: auto;
-  grid-auto-rows: minmax(45px, auto);
-	/* height: calc(50vh - 0px); */
+  grid-auto-rows: minmax(45px, 45px);
+  /* height: calc(50vh - 0px); */
+  /* grid-template-rows: .5fr 1fr; */
 }
 
 .central {
@@ -32,7 +34,7 @@ body {
 
 .top {
   grid-column: 1 / 7;
-  grid-row: 1;
+  grid-row: 1 / 2;
   color:#e1ebed;
   background-color: #2c3233;
   display: flex;
