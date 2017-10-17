@@ -7,11 +7,9 @@
         <link rel="stylesheet" href="w3.css">
     </head>
     <body>
-        <script>
-          // You can also require other files to run in this process
-            require('./index.js');
-            require('./renderer.js');
-        </script>
+        <script>delete module.exports</script>
+        <script src="./jquery-3.2.1.js"></script>
+        <script src="./renderer.js" charset="utf-8"></script>
 
         <div class="container">
             <header></header>
@@ -22,15 +20,15 @@
                     central div
                   </div>
                   <div class="top">
-                    <img width=50px src="imgs/vt_demo_logo_white.png"></img>
+                    <!-- <img width=50px src="imgs/vt_demo_logo_white.png"></img> -->
                     <div class="w3-bar w3-bar-custom">
-                      <button id="quit-app" name="joe" class="w3-btn">Quit</button>
-                      <button class="w3-btn">Button</button>
-                      <button class="w3-btn">Button</button>
-                      <button class="w3-btn">Button</button>
-                      <button class="w3-btn">Button</button>
-                      <button class="w3-btn">Button</button>
-                      <button class="w3-btn">Button</button>
+                      <button id="quit-app" name="joe" class="w3-button w3-padding-large">Quit</button>
+                      <button class="w3-button w3-padding-large">Button</button>
+                      <button class="w3-button w3-padding-large">Button</button>
+                      <button class="w3-button w3-padding-large">Button</button>
+                      <button class="w3-button w3-padding-large">Button</button>
+                      <button class="w3-button w3-padding-large">Button</button>
+                      <button class="w3-button w3-padding-large">Button</button>
                     </div> 
                   </div>
                   <div class="sidebar">sidebar</div>

@@ -9,7 +9,7 @@ require('electron-debug')();
 
 // Prevent window being garbage collected
 let mainWindow;
-let win_size = 1100;
+let win_size = 1500;
 
 
 function onClosed() {
@@ -20,10 +20,10 @@ function onClosed() {
 
 function createMainWindow() {
 	const win = new electron.BrowserWindow({
-		frame: false,	  // removes chrome frame on all platforms
-		resizable: false, // makes sure window cannot be resized
-		width: win_size*0.6,
-		height: win_size*0.45
+		frame: true,	  // removes chrome frame on all platforms
+		resizable: false,  // makes sure window cannot be resized
+		width: win_size*0.8,
+		height: win_size*0.65
 	});
 
 	win.loadURL(`file://${__dirname}/index.html`);
@@ -55,7 +55,9 @@ app.on('activate', () => {
 
 app.on('ready', () => {
 	mainWindow = createMainWindow();
+	
 });
+
 
 /* Close App
 close main window on call
