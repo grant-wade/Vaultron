@@ -1,6 +1,7 @@
 html, body {
 	padding: 0;
 	margin: 0;
+  overflow-y: hidden;
 }
 
 #passwords td, #passwords th {
@@ -22,10 +23,20 @@ html, body {
 
 body {
 	font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+  
 }
 
 * {
 	box-sizing: border-box;
+}
+
+.scrollable{
+  
+}
+
+.scroll-control{
+  height: 63%;
+  overflow-y: scroll;
 }
 
 .wrapper {
