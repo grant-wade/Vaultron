@@ -3,6 +3,23 @@ html, body {
 	margin: 0;
 }
 
+#passwords td, #passwords th {
+  border: 1px solid black;
+  text-align: center;
+}
+#passwords {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#passwords tr:hover {background-color: #ddd;}
+#passwords th {
+  background-color: grey;
+  color: white;
+}
+
+
 body {
 	font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
 }
