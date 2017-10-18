@@ -8,13 +8,10 @@ body {
 }
 
 header {
-	position: absolute;
-	width: 500px;
-	height: 250px;
-	top: 50%;
-	left: 50%;
-	margin-top: -125px;
-	margin-left: -250px;
+	/* position: absolute; */
+	margin-top: 20%;
+	margin-left: auto;
+	margin-right: auto;
 	text-align: center;
 }
 
@@ -27,19 +24,27 @@ header h4 {
 
 .container{
 	margin-left: auto;
-    margin-right: auto;
+	margin-right: auto;
+	width: 80%;
 }
 
 .link_style{
 	background-color: #b4c2c4;
 }
 
+.password {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 40%;
+	min-width: 100px;
+}
+
+
 
 a.button {
 	-webkit-appearance: button;
 	-moz-appearance: button;
 	appearance: button;
-  
 	text-decoration: none;
 	color: initial;
   }

@@ -1,5 +1,8 @@
 const crypto = require('crypto');
 
+
+module.exports = {hashPassword, verifyPassword, generateMasterKey};
+
 const hashVars = {
     iterations: 500000,
     hashBytes: 64,
@@ -63,4 +66,19 @@ function verifyPassword(password, combined, callback) {
         }
         callback(null, verify.toString('binary') === hash);
     });
+}
+
+
+/**
+ * Generates a master key of 2048 bytes
+ *
+ * @param {!function(?Error, ?Buffer=)} callback
+ */
+function generateMasterKey(callback) {
+    crypto.randomBytes(2048, (err, masterKey) => {
+        if (err) {
+            return callback(err);
+        }
+        callback(null, masterKey);
+    })
 }

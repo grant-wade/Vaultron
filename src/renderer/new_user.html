@@ -9,19 +9,15 @@
 	<body>
 		<script>delete module.exports</script>
 		<script src="./jquery-3.2.1.js"></script>
-		<script src="./login.js"></script>
+		<script src="./new_user.js"></script>
 
 		<div class="container">
-			<header> 
-                <img width=200px src="../../imgs/vt_demo_logo_2.png"></img>
-				<h4>Welcome to Vaultron</h4><br>
-				<h4>Secure Password Storage</h4><br>
-				<select id="profileSelect">
-					<option value="none">none</option>
-				</select>
+			<header>
+				<h4 id="status">Please enter a profile name and password for your new Vault</h4><br>
 				<div class="passwordDiv">
-					<input type="password" class="w3-input w3-border password" placeholder="Password">
-					<a class="w3-button w3-dark-grey w3-padding-small" href="main.html">Login</a>
+					<input id="profileName" type="text" class="w3-input w3-border password" placeholder="Profile Name">
+                    <input id="password" type="password" class="w3-input w3-border password" placeholder="Password">
+                    <button id="submit" class="w3-button w3-dark-grey w3-padding-large">Submit</button>
 				</div>
                 
             </header>

@@ -1,8 +1,12 @@
 'use strict';
 const electron = require('electron');
-// const remote = require('electron').remote;
 const app = electron.app;
-var ipc = require('electron').ipcMain; 
+const security = require('./security.js')
+const ipc = require('electron').ipcMain; 
+const fileio = require('./fileio.js')
+
+
+// const remote = require('electron').remote; //idk if we need this
 
 // Adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
@@ -47,15 +51,34 @@ app.on('window-all-closed', () => {
 	}
 });
 
-app.on('activate', () => {
-	if (!mainWindow) {
-		mainWindow = createMainWindow();
-	}
-});
+// app.on('activate', () => {
+// 	if (!mainWindow) {
+// 		mainWindow = createMainWindow();
+// 	}
+// });
+
 
 app.on('ready', () => {
 	mainWindow = createMainWindow();
+
+	// fileio.getProfiles(app.getPath('userData'), (err, profiles) => {
+	// 	if (typeof profiles === 'undefined') {
+	// 		newProfile()
+	// 	} else {
+	// 		console.log("made it");
+			
+	// 		for (var i = 0; i < profiles.length; i++) {
+	// 			console.log(profiles[i]);
+
+	// 		}
+	// 	}
+	// });
 });
+
+function newProfile() {
+	mainWindow.loadURL(`file://${__dirname}/../renderer/new_user.html`)
+}
+
 
 
 ipc.on('shutdown', function(){
@@ -63,6 +86,44 @@ ipc.on('shutdown', function(){
 });
 
 
+ipc.on('getProfiles', (event) => {
+	fileio.getProfiles(app.getPath('userData'), (err, profiles) => {
+		if (typeof profiles === 'undefined') {
+			newProfile()
+		} else {
+			console.log("made it");
+			for (var i = 0; i < profiles.length; i++) {
+				console.log(profiles[i]);
+			}
+			event.sender.send('getProfilesReply', profiles);
+		}
+	});
+})
+
+
+ipc.on('newProfile', (event, args) => {
+	console.log(args);
+	security.generateMasterKey((err, masterKey) => {
+		console.log(masterKey);
+		security.hashPassword(args[1], (err, buf) => {
+			console.log(buf);
+			if (err) {
+				ipc.send('profileCreateFail', err);
+			}
+			fileio.createProfile(app.getPath('userData'), args[0], buf.toString('base64'), masterKey.toString('base64'), (worked) => {
+				console.log("create profile" + worked);
+				mainWindow.loadURL(`file://${__dirname}/../renderer/login.html`)
+			})
+		})
+	})
+})
+
+
 ipc.on('getPath', function (event, arg) {
 	event.sender.send('getPathReply', app.getPath('userData'))
+})
+
+
+ipc.on('checkPassword', function (event, arg) {
+	
 })
