@@ -20,9 +20,9 @@ $('#quit-app').click(() => {
 
 var electron = require('electron');
 
-document.getElementById("vault-test").addEventListener('click', () => {
-    ipc.send('getPath', 'ping')
-})
+// document.getElementById("vault-test").addEventListener('click', () => {
+//     ipc.send('getPath', 'ping')
+// })
 
 ipc.on('getPathReply', (event, arg) => {
     document.getElementById('message').innerHTML = arg

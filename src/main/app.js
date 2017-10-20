@@ -91,9 +91,9 @@ ipc.on('getProfiles', (event) => {
 		if (typeof profiles === 'undefined') {
 			newProfile()
 		} else {
-			console.log("made it");
+			// console.log("made it");
 			for (var i = 0; i < profiles.length; i++) {
-				console.log(profiles[i]);
+				// console.log(profiles[i]);
 			}
 			event.sender.send('getProfilesReply', profiles);
 		}
@@ -102,16 +102,12 @@ ipc.on('getProfiles', (event) => {
 
 
 ipc.on('newProfile', (event, args) => {
-	console.log(args);
 	security.generateMasterKey((err, masterKey) => {
-		console.log(masterKey);
 		security.hashPassword(args[1], (err, buf) => {
-			console.log(buf);
 			if (err) {
 				ipc.send('profileCreateFail', err);
 			}
 			fileio.createProfile(app.getPath('userData'), args[0], buf.toString('base64'), masterKey.toString('base64'), (worked) => {
-				console.log("create profile" + worked);
 				mainWindow.loadURL(`file://${__dirname}/../renderer/login.html`)
 			})
 		})

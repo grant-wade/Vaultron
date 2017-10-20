@@ -16,8 +16,8 @@ function getProfiles(userData, callback) {
             return callback(err);
         }
     });
-    console.log(location);
-    console.log("test");
+    // console.log(location);
+    // console.log("test");
     fs.readdir(location, function(err, items) {
         if (typeof items === 'undefined') {
             callback(null, items);
@@ -65,9 +65,9 @@ function createProfile(userData, name, hashedPassword, masterKey, callback) {
         table: [
             {
                 "profileName": name,
+                "vaultFile": name+"-vault.json",
                 "password": hashedPassword,
-                "masterKey": masterKey,
-                "vaultFile": name+"-vault.json"
+                "masterKey": masterKey
             }
         ]
     };
