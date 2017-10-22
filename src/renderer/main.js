@@ -18,6 +18,7 @@ $('#quit-app').click(() => {
     ipc.send('shutdown');
 })
 
+
 var electron = require('electron');
 
 // document.getElementById("vault-test").addEventListener('click', () => {
