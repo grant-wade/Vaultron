@@ -6,22 +6,10 @@
 // var electron = require('electron')
 const ipc = require('electron').ipcRenderer;
 
-// document.getElementById("quit-app").addEventListener("click", function(e) {
-//     console.log(document.getElementById("quit-app").name);
-//     ipc.send('shutdown');
-// });
-
 $('#quit-app').click(() => {
     console.log(document.getElementById("quit-app").name);
     ipc.send('shutdown');
 })
-
-
-var electron = require('electron');
-
-// document.getElementById("vault-test").addEventListener('click', () => {
-//     ipc.send('getPath', 'ping')
-// })
 
 ipc.on('getPathReply', (event, arg) => {
     document.getElementById('message').innerHTML = arg

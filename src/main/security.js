@@ -32,13 +32,14 @@ function hashPassword(password, callback) {
             }
             const combined = Buffer.alloc(hash.length + salt.length + 8);
 
-            // Figure out how much of the hash is salt
+            // Add salt length to beggining of buffer
             combined.writeUInt32BE(salt.length, 0, true);
-            // Similarly, include the iteration count
+            // Add iteration count after salt length
             combined.writeUInt32BE(hashVars.iterations, 4, true);
 
             // Include salt before hash
             salt.copy(combined, 8);
+            // Finally add hashed password
             hash.copy(combined, salt.length + 8);
             // Return combined hash
             callback(null, combined);
@@ -54,7 +55,7 @@ function hashPassword(password, callback) {
  * @param {!function(?Error, ?Buffer=)} callback
  */
 function verifyPassword(password, combined, callback) {
-    const buffer = Buffer.from(combined, 'hex');
+    const buffer = Buffer.from(combined, 'base64');
 
     // Extract the salt and hash from the combined buffer
     const saltBytes = buffer.readUInt32BE(0);

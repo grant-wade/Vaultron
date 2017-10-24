@@ -3,7 +3,8 @@ const fs = require('fs');
 module.exports = {
     getProfiles,
     profileExist,
-    createProfile
+    createProfile,
+    getProfile
 };
 
 
@@ -15,18 +16,27 @@ module.exports = {
  */
 function getProfiles(userData, callback) {
     var location = userData + '/profiles';
+
+    // Make sure profiles folder exists
     fs.stat(location, (err, stats) => {
         if (err && err.errno === 34) {
             return callback(err);
         }
     });
-    // console.log(location);
-    // console.log("test");
+
+    // Read the contents of profiles directory
     fs.readdir(location, function (err, items) {
+        var profiles = [];
         if (typeof items === 'undefined') {
             callback(null, items);
         }
-        callback(null, items)
+        items.forEach(function(element) {
+            var profile = JSON.parse(fs.readFileSync(location + '/' + element, 'utf8'));
+            if (typeof profile.details.profileName != 'undefiend') {
+                profiles.push(profile.details.profileName);
+            }
+        });
+        callback(null, profiles);
     });
 }
 
@@ -35,12 +45,31 @@ function getProfiles(userData, callback) {
  *
  * @param {!String} userData
  * @param {!String} name
- * @param {!function(?Boolean)} callback
+ * @param {!function(?Error, ?Boolean)} callback
  */
 function profileExist(userData, name, callback) {
-    var location = userData + '/profiles/' + name + '/' + name + '.json';
+    var location = userData + '/profiles/' + name + '.json';
     fs.exists(location, (doesExist) => {
         callback(doesExist);
+    });
+}
+
+
+/**
+ * Checks if a profile with name exists
+ *
+ * @param {!String} userData
+ * @param {!String} name
+ * @param {!function(?Error, ?Object)} callback
+ */
+function getProfile(userData, name, callback) {
+    var file = userData + '/profiles/' + name + '/' + name + '.json';
+    profileExist(userData, name, (err, exists) => {
+        if (exists) {
+            var profile = JSON.parse(fs.readFileSync(file, 'utf8'));
+            
+            callback(null, );
+        }
     });
 }
 
@@ -50,7 +79,7 @@ function profileExist(userData, name, callback) {
  *
  * @param {!String} userData
  * @param {!String} name
- * @param {!String} hashedPassword
+ * @param {!Buffer} hashedPassword
  * @param {!Buffer} masterKey
  * @param {!function(?Boolean)} callback
  */
@@ -59,21 +88,17 @@ function createProfile(userData, name, hashedPassword, masterKey, callback) {
     if (!fs.existsSync(location)) { // Creates profile dir
         fs.mkdirSync(location); // if it doesn't exist
     }
-    location += '/' + name;
-    if (!fs.existsSync(location)) { // Creates name dir
-        fs.mkdirSync(location); // if it doesn't exist
-    } else { // Profile exists exit
-        callback(false);
-    }
     var profile = {
-        table: [{
+        details: {
             "profileName": name,
             "vaultFile": name + "-vault.json",
-            "password": hashedPassword,
-            "masterKey": masterKey
-        }]
-    };
+            "password": hashedPassword.toString('base64'),
+            "masterKey": masterKey.toString('base64')
+        },
+        vault: {
 
+        }
+    };
     location += '/' + name + '.json'
     var json = JSON.stringify(profile);
     fs.writeFile(location, json, 'utf8', callback);
