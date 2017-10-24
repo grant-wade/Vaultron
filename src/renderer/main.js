@@ -3,8 +3,6 @@
 // All of the Node.js APIs are available in this process.
 
 
-$(function () {
-
 // var electron = require('electron')
 const ipc = require('electron').ipcRenderer;
 
@@ -29,6 +27,3 @@ ipc.on('getPathReply', (event, arg) => {
     document.getElementById('message').innerHTML = arg
     console.log(arg);
 })
-
-
-});

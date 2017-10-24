@@ -1,7 +1,11 @@
 const crypto = require('crypto');
 
 
-module.exports = {hashPassword, verifyPassword, generateMasterKey};
+module.exports = {
+    hashPassword,
+    verifyPassword,
+    generateMasterKey
+};
 
 const hashVars = {
     iterations: 500000,

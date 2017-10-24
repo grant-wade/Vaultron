@@ -1,5 +1,6 @@
+// Script that takes care of the login windows functions
 
-$(function () {
+
 
 // var electron = require('electron')
 const ipc = require('electron').ipcRenderer;
@@ -13,6 +14,3 @@ ipc.on('getProfilesReply', (event, arg) => {
     }
     document.getElementById('profileSelect').innerHTML = html;
 })
-
-});
-    

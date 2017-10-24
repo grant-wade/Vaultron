@@ -1,6 +1,10 @@
 const fs = require('fs');
 
-module.exports = {getProfiles, profileExist, createProfile};
+module.exports = {
+    getProfiles,
+    profileExist,
+    createProfile
+};
 
 
 /**
@@ -18,7 +22,7 @@ function getProfiles(userData, callback) {
     });
     // console.log(location);
     // console.log("test");
-    fs.readdir(location, function(err, items) {
+    fs.readdir(location, function (err, items) {
         if (typeof items === 'undefined') {
             callback(null, items);
         }
@@ -53,25 +57,23 @@ function profileExist(userData, name, callback) {
 function createProfile(userData, name, hashedPassword, masterKey, callback) {
     var location = userData + '/profiles';
     if (!fs.existsSync(location)) { // Creates profile dir
-        fs.mkdirSync(location);    // if it doesn't exist
+        fs.mkdirSync(location); // if it doesn't exist
     }
-    location += '/' + name; 
+    location += '/' + name;
     if (!fs.existsSync(location)) { // Creates name dir
-        fs.mkdirSync(location);    // if it doesn't exist
+        fs.mkdirSync(location); // if it doesn't exist
     } else { // Profile exists exit
         callback(false);
     }
     var profile = {
-        table: [
-            {
-                "profileName": name,
-                "vaultFile": name+"-vault.json",
-                "password": hashedPassword,
-                "masterKey": masterKey
-            }
-        ]
+        table: [{
+            "profileName": name,
+            "vaultFile": name + "-vault.json",
+            "password": hashedPassword,
+            "masterKey": masterKey
+        }]
     };
-    
+
     location += '/' + name + '.json'
     var json = JSON.stringify(profile);
     fs.writeFile(location, json, 'utf8', callback);

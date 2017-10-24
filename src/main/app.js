@@ -2,7 +2,7 @@
 const electron = require('electron');
 const app = electron.app;
 const security = require('./security.js')
-const ipc = require('electron').ipcMain; 
+const ipc = require('electron').ipcMain;
 const fileio = require('./fileio.js')
 
 
@@ -24,12 +24,12 @@ function onClosed() {
 
 function createMainWindow() {
 	const win = new electron.BrowserWindow({
-		frame: true,	  // removes chrome frame on all platforms
-		resizable: true,  // makes sure window cannot be resized
-		width: win_size*0.8,
-		height: win_size*0.65,
+		frame: true, // removes chrome frame on all platforms
+		resizable: true, // makes sure window cannot be resized
+		width: win_size * 0.8,
+		height: win_size * 0.65,
 	});
-	
+
 	win.loadURL(`file://${__dirname}/../renderer/login.html`);
 	win.on('closed', onClosed);
 	return win;
@@ -66,7 +66,7 @@ app.on('ready', () => {
 	// 		newProfile()
 	// 	} else {
 	// 		console.log("made it");
-			
+
 	// 		for (var i = 0; i < profiles.length; i++) {
 	// 			console.log(profiles[i]);
 
@@ -81,8 +81,8 @@ function newProfile() {
 
 
 
-ipc.on('shutdown', function(){
-    app.quit();
+ipc.on('shutdown', function () {
+	app.quit();
 });
 
 
@@ -121,5 +121,5 @@ ipc.on('getPath', function (event, arg) {
 
 
 ipc.on('checkPassword', function (event, arg) {
-	
+
 })
