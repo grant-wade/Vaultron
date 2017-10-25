@@ -27,7 +27,7 @@ function createMainWindow() {
 		height: win_size * 0.65,
 	});
 
-	win.loadURL(`file://${__dirname}/../renderer/login.html`);
+	win.loadURL(`file://${__dirname}/../renderer/main.html`);
 	win.on('closed', onClosed);
 	return win;
 }
@@ -93,13 +93,17 @@ ipc.on('getPath', function (event, arg) {
 // =============================================== //
 ipc.on('checkPassword', function (event, args) {
 	fileio.getProfile(app.getPath('userData'), args[0], (err, profile) => {
-		security.verifyPassword(args[1], profile.details.password, (err, result) => {
+		console.log("begin");
+		var res = security.verifyPassword(args[1], profile.details.password, (err, result) => {
+			console.log("checking");
 			if (result) {
+				console.log("good user!");
 				currentProfile = profile;
 				mainWindow.loadURL(`file://${__dirname}/../renderer/main.html`);
 			} else {
 				event.sender.send("badPassword")
 			}
 		});
+		console.log(res);
 	});
 });

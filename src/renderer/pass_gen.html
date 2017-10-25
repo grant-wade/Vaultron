@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vaultron</title>
+        <link rel="stylesheet" href="../css/login.css">
+        <link rel="stylesheet" href="../css/w3.css">
+        <link rel="stylesheet" href="../css/main.css">
+    </head>
+    <body>
+        <script>delete module.exports</script>
+        <script src="./jquery-3.2.1.js"></script>
+        <script src="../main/pass_gen.js"></script>
+
+        
+        <div class="container">
+            <header>
+                <center>
+                <table style="text-align: left;">
+                    <col width="90">
+                    
+                    <tr>
+                        <td>
+                        <label class="switch">
+                          <input id="number" type="checkbox" value=0 onclick="switch_val(this)">
+                          <span class="slider"></span>
+                        </label>
+                        </td>
+                        <td><b>Numbers</b></td>
+                    </tr >
+                    <tr>
+                        <td>
+                        <label class="switch">
+                          <input id="lower" type="checkbox" value=0 onclick="switch_val(this)">
+                          <span class="slider"></span>
+                        </label>
+                        </td>
+                        <td><b>Lowercase</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <label class="switch">
+                          <input id="upper" type="checkbox" value=0 onclick="switch_val(this)">
+                          <span class="slider"></span>
+                        </label>
+                        </td>
+                        <td><b>Uppercase</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <label class="switch">
+                          <input id="symbol" type="checkbox" value=0 onclick="switch_val(this)">
+                          <span class="slider"></span>
+                        </label>
+                        </td>
+                        <td><b>Symbols</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <label class="switch">
+                          <input id="space" type="checkbox" value=0 onclick="switch_val(this)">
+                          <span class="slider"></span>
+                        </label>
+                        </td>
+                        <td><b>Spaces</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <input id="length" type="integer" class="w3-input w3-border switch"  placeholder="int" maxlength="4">
+                        </td>
+                        <td><b>Length</b></td>
+                    </tr>
+                    </table>
+                    
+                    <br>
+                    <a class="w3-button w3-dark-grey w3-padding-small" onclick="generate_password()" style="width:200px">Generate</a>
+                    </td>
+                    <br><br><br>
+                    <textarea id="gen_result" readonly style="max-width:550px; max-height:200px"></textarea>
+                </center>
+            </header>
+        </div>
+
+                
+        <section class="main">
+        </section>
+        <footer></footer>
+    </body>
+</html>
