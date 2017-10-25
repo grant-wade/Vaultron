@@ -10,6 +10,7 @@ require('electron-debug')();
 
 // Prevent window being garbage collected
 let mainWindow;
+let userData = app.getPath('userData');
 let win_size = 1500;
 
 
@@ -69,13 +70,19 @@ ipc.on('getProfiles', (event) => {
 
 
 ipc.on('newProfile', (event, args) => {
-	security.generateMasterKey((err, masterKey) => {
-		security.hashPassword(args[1], (err, buf) => {
-			if (err) {
-				ipc.send('profileCreateFail', err);
-			}
-			fileio.createProfile(app.getPath('userData'), args[0], buf, masterKey, (worked) => {
-				mainWindow.loadURL(`file://${__dirname}/../renderer/login.html`);
+	fileio.profileExist(userData, args[0], (err, val) => {
+		console.log(err + ' ' + val);
+		if (val) {
+			return event.sender.send("profileCreateFail", "Profile already exists!")
+		}
+		security.generateMasterKey((err, masterKey) => {
+			security.hashPassword(args[1], (err, buf) => {
+				if (err) {
+					ipc.send('profileCreateFail', err);
+				}
+				fileio.createProfile(app.getPath('userData'), args[0], buf, masterKey, (worked) => {
+					mainWindow.loadURL(`file://${__dirname}/../renderer/login.html`);
+				});
 			});
 		});
 	});
