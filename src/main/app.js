@@ -5,9 +5,6 @@ const security = require('./security.js')
 const ipc = require('electron').ipcMain;
 const fileio = require('./fileio.js')
 
-
-// const remote = require('electron').remote; //idk if we need this
-
 // Adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
 
@@ -35,15 +32,6 @@ function createMainWindow() {
 	return win;
 }
 
-// change the main window to accomodate the main app rather then login
-// function change_window(toWindow){
-// 	if (toWindow == "login"){
-// 		console.log('changing to login window');
-// 	}
-// 	else if (toWindow == "main"){
-// 		console.log('changing to main window');
-// 	}
-// }
 
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
@@ -51,34 +39,14 @@ app.on('window-all-closed', () => {
 	}
 });
 
-// app.on('activate', () => {
-// 	if (!mainWindow) {
-// 		mainWindow = createMainWindow();
-// 	}
-// });
-
 
 app.on('ready', () => {
 	mainWindow = createMainWindow();
-
-	// fileio.getProfiles(app.getPath('userData'), (err, profiles) => {
-	// 	if (typeof profiles === 'undefined') {
-	// 		newProfile()
-	// 	} else {
-	// 		console.log("made it");
-
-	// 		for (var i = 0; i < profiles.length; i++) {
-	// 			console.log(profiles[i]);
-
-	// 		}
-	// 	}
-	// });
 });
 
 function newProfile() {
 	mainWindow.loadURL(`file://${__dirname}/../renderer/new_user.html`)
 }
-
 
 
 ipc.on('shutdown', function () {
@@ -116,6 +84,18 @@ ipc.on('getPath', function (event, arg) {
 })
 
 
-ipc.on('checkPassword', function (event, arg) {
-
-})
+/**
+ * On ipc call checkPassword check passed password
+ * against stored password hash.
+ */
+ipc.on('checkPassword', function (event, args) {
+	fileio.getProfile(app.getPath('userData'), args[0], (err, profile) => {
+		security.verifyPassword(args[1], profile.details.password, (err, result) => {
+			if (result) {
+				mainWindow.loadURL(`file://${__dirname}/../renderer/main.html`);
+			} else {
+				event.sender.send("badPassword")
+			}
+		});
+	});
+});

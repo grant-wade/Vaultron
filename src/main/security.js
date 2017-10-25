@@ -52,7 +52,7 @@ function hashPassword(password, callback) {
  *
  * @param {!String} password
  * @param {!Buffer} combined
- * @param {!function(?Error, ?Buffer=)} callback
+ * @param {!function(?Error, ?Boolean)} callback
  */
 function verifyPassword(password, combined, callback) {
     const buffer = Buffer.from(combined, 'base64');

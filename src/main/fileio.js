@@ -50,7 +50,7 @@ function getProfiles(userData, callback) {
 function profileExist(userData, name, callback) {
     var location = userData + '/profiles/' + name + '.json';
     fs.exists(location, (doesExist) => {
-        callback(doesExist);
+        callback(null, doesExist);
     });
 }
 
@@ -63,12 +63,11 @@ function profileExist(userData, name, callback) {
  * @param {!function(?Error, ?Object)} callback
  */
 function getProfile(userData, name, callback) {
-    var file = userData + '/profiles/' + name + '/' + name + '.json';
+    var file = userData + '/profiles/' +  name + '.json';
     profileExist(userData, name, (err, exists) => {
         if (exists) {
             var profile = JSON.parse(fs.readFileSync(file, 'utf8'));
-            
-            callback(null, );
+            callback(null, profile);
         }
     });
 }
