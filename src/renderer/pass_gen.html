@@ -10,9 +10,7 @@
     <body>
         <script>delete module.exports</script>
         <script src="./jquery-3.2.1.js"></script>
-        <script src="../main/pass_gen.js"></script>
 
-        
         <div class="container">
             <header>
                 <center>
@@ -22,7 +20,7 @@
                     <tr>
                         <td>
                         <label class="switch">
-                          <input id="number" type="checkbox" value=0 onclick="switch_val(this)">
+                          <input id="number" type="checkbox" value=1 onclick="switch_val(this)" checked>
                           <span class="slider"></span>
                         </label>
                         </td>
@@ -31,7 +29,7 @@
                     <tr>
                         <td>
                         <label class="switch">
-                          <input id="lower" type="checkbox" value=0 onclick="switch_val(this)">
+                          <input id="lower" type="checkbox" value=1 onclick="switch_val(this)" checked>
                           <span class="slider"></span>
                         </label>
                         </td>
@@ -40,7 +38,7 @@
                     <tr>
                         <td>
                         <label class="switch">
-                          <input id="upper" type="checkbox" value=0 onclick="switch_val(this)">
+                          <input id="upper" type="checkbox" value=1 onclick="switch_val(this)" checked>
                           <span class="slider"></span>
                         </label>
                         </td>
@@ -66,17 +64,18 @@
                     </tr>
                     <tr>
                         <td>
-                        <input id="length" type="integer" class="w3-input w3-border switch"  placeholder="int" maxlength="4">
+                        <input id="length" type="integer" class="w3-input w3-border switch"  placeholder="int" value="15" maxlength="4">
                         </td>
                         <td><b>Length</b></td>
                     </tr>
                     </table>
                     
                     <br>
-                    <a class="w3-button w3-dark-grey w3-padding-small" onclick="generate_password()" style="width:200px">Generate</a>
+                    <a class="w3-button w3-dark-grey w3-padding-small" onclick="generate_password()" style="width:150px">Generate</a>
+                    <a id="copy_btn" class="w3-button w3-dark-grey w3-padding-small" style="width:150px">Copy</a>
                     </td>
                     <br><br><br>
-                    <textarea id="gen_result" readonly style="max-width:550px; max-height:200px"></textarea>
+                    <textarea id="gen_result" readonly style="width:500px; resize: none; height:200px"></textarea>
                 </center>
             </header>
         </div>
@@ -85,5 +84,6 @@
         <section class="main">
         </section>
         <footer></footer>
+        <script src="../renderer/pass_gen.js"></script>
     </body>
 </html>

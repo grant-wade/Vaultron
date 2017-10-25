@@ -1,6 +1,5 @@
 <!doctype html>
 
-
 </style>
 <html>
     <head>
@@ -12,6 +11,7 @@
     <body>
         <script>delete module.exports</script>
         <script src="./jquery-3.2.1.js"></script>
+        <script type="text/javascript" language="javascript" src="../renderer/1.10.16_js_jquery.dataTables.min.js"></script>
         <div>
             <header></header>
                 
@@ -19,13 +19,16 @@
                 <div class="wrapper">
                   <div class="central">
                     <!-- central div -->
-                    <div id="scrollbar-main" class="scroll-control">
-                    <table id="passwords" class="scrollable">
+                    <div id="scrollbar-main" >
+                    <table id="passwords" class="display">
+                        <thead>
                         <tr>
                             <th>website</th>
                             <th>username</th>
                             <th>password</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <tr>
                             <td>google.com</td>
                             <td>JoeDirtRocks</td>
@@ -200,6 +203,7 @@
                             <td>treesaregrass</td>
                             <td>grassRbeer</td>                    
                         </tr>
+                        </tbody>
                     </table>
                     </div>
                   </div>
@@ -208,9 +212,10 @@
                     <div class="w3-bar w3-bar-custom">
                       <button id="quit-app" class="w3-button w3-padding-large w3-right">Quit</button>
                       <!-- <button id="vault-test" class="w3-button w3-padding-large">Vault Test</button> -->
-                      <button class="w3-button w3-padding-large">Search</button>
+                      <button id="search" class="w3-button w3-padding-large">Search</button>
                       <button id="pass_gen" class="w3-button w3-padding-large">Password Generator</button>
                       <button class="w3-button w3-padding-large">New Entry</button>
+                      <button class="w3-button w3-padding-large">Settings</button>
                       <a class="w3-button w3-padding-large" href="login.html">Profiles</a>
                     </div> 
                   </div>
@@ -221,7 +226,6 @@
             <footer></footer>
         </div>
         <script src="./main.js"></script>
-        <script src="../main/pass_gen.js"></script>
 
     </body>
 </html>
