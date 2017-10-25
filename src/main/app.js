@@ -57,7 +57,7 @@ ipc.on('shutdown', function () {
 ipc.on('getProfiles', (event) => {
 	fileio.getProfiles(app.getPath('userData'), (err, profiles) => {
 		if (typeof profiles === 'undefined') {
-			newProfile()
+			newProfile();
 		} else {
 			event.sender.send('getProfilesReply', profiles);
 		}
@@ -72,22 +72,22 @@ ipc.on('newProfile', (event, args) => {
 				ipc.send('profileCreateFail', err);
 			}
 			fileio.createProfile(app.getPath('userData'), args[0], buf, masterKey, (worked) => {
-				mainWindow.loadURL(`file://${__dirname}/../renderer/login.html`)
-			})
-		})
-	})
-})
+				mainWindow.loadURL(`file://${__dirname}/../renderer/login.html`);
+			});
+		});
+	});
+});
 
 
 ipc.on('getPath', function (event, arg) {
-	event.sender.send('getPathReply', app.getPath('userData'))
-})
+	event.sender.send('getPathReply', app.getPath('userData'));
+});
 
 
-/**
- * On ipc call checkPassword check passed password
- * against stored password hash.
- */
+// =============================================== //
+// On ipc call checkPassword check passed password //
+// against stored password hash.                   //
+// =============================================== //
 ipc.on('checkPassword', function (event, args) {
 	fileio.getProfile(app.getPath('userData'), args[0], (err, profile) => {
 		security.verifyPassword(args[1], profile.details.password, (err, result) => {

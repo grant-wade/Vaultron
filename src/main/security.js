@@ -18,8 +18,8 @@ const hashVars = {
  * Hashes given password using PBKDF2 with a random
  * salt and a derived key size of 512 bits.
  *
- * @param {!String} password
- * @param {!function(?Error, ?Buffer=)} callback
+ * @param {String} password 
+ * @param {function(Error, Buffer)} callback
  */
 function hashPassword(password, callback) {
     crypto.randomBytes(hashVars.saltBytes, (err, salt) => {
@@ -50,9 +50,9 @@ function hashPassword(password, callback) {
 /**
  * Verifies that the password matches the hash
  *
- * @param {!String} password
- * @param {!Buffer} combined
- * @param {!function(?Error, ?Boolean)} callback
+ * @param {String} password
+ * @param {Buffer} combined
+ * @param {function(Error, Boolean)} callback
  */
 function verifyPassword(password, combined, callback) {
     const buffer = Buffer.from(combined, 'base64');
@@ -77,7 +77,7 @@ function verifyPassword(password, combined, callback) {
 /**
  * Generates a master key of 2048 bytes
  *
- * @param {!function(?Error, ?Buffer=)} callback
+ * @param {function(Error, Buffer=)} callback
  */
 function generateMasterKey(callback) {
     crypto.randomBytes(2048, (err, masterKey) => {

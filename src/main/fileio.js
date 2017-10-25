@@ -11,8 +11,8 @@ module.exports = {
 /**
  * Verifies that the password matches the hash
  *
- * @param {!String} userData
- * @param {!function(?Error, ?Array)} callback
+ * @param {String} userData
+ * @param {function(Error, Array)} callback
  */
 function getProfiles(userData, callback) {
     var location = userData + '/profiles';
@@ -43,9 +43,9 @@ function getProfiles(userData, callback) {
 /**
  * Checks if a profile with name exists
  *
- * @param {!String} userData
- * @param {!String} name
- * @param {!function(?Error, ?Boolean)} callback
+ * @param {String} userData
+ * @param {String} name
+ * @param {function(Error, Boolean)} callback
  */
 function profileExist(userData, name, callback) {
     var location = userData + '/profiles/' + name + '.json';
@@ -58,9 +58,9 @@ function profileExist(userData, name, callback) {
 /**
  * Checks if a profile with name exists
  *
- * @param {!String} userData
- * @param {!String} name
- * @param {!function(?Error, ?Object)} callback
+ * @param {String} userData
+ * @param {String} name
+ * @param {function(Error, Object)} callback
  */
 function getProfile(userData, name, callback) {
     var file = userData + '/profiles/' +  name + '.json';
@@ -76,11 +76,11 @@ function getProfile(userData, name, callback) {
 /**
  * Creates a profile with name in userData/profile folder
  *
- * @param {!String} userData
- * @param {!String} name
- * @param {!Buffer} hashedPassword
- * @param {!Buffer} masterKey
- * @param {!function(?Boolean)} callback
+ * @param {String} userData
+ * @param {String} name
+ * @param {Buffer} hashedPassword
+ * @param {Buffer} masterKey
+ * @param {function(Boolean)} callback
  */
 function createProfile(userData, name, hashedPassword, masterKey, callback) {
     var location = userData + '/profiles';
