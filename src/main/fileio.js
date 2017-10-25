@@ -9,7 +9,7 @@ module.exports = {
 
 
 /**
- * Verifies that the password matches the hash
+ * Get all profiles in the users directory
  *
  * @param {String} userData
  * @param {function(Error, Array)} callback
@@ -17,14 +17,8 @@ module.exports = {
 function getProfiles(userData, callback) {
     var location = userData + '/profiles';
 
-    // Make sure profiles folder exists
-    // fs.stat(location, (err, stats) => {
-    //     console.log(stats);
-    //     if (err && err.errno === 34) {
-    //         return callback(err);
-    //     }
-    // });
-    if (!fs.existsSync(location)) { // Creates profile dir
+    // Check if the profiles dir exists
+    if (!fs.existsSync(location)) {
         return callback(null)
     }
 
@@ -36,8 +30,8 @@ function getProfiles(userData, callback) {
         }
         items.forEach((element) => {
             var profile = JSON.parse(fs.readFileSync(location + '/' + element, 'utf8'));
-            if (typeof profile.details.profileName != 'undefiend') {
-                profiles.push(profile.details.profileName);
+            if (typeof profile.details.name != 'undefiend') {
+                profiles.push(profile.details.name);
             }
         });
         callback(null, profiles);
