@@ -54,6 +54,9 @@ ipc.on('shutdown', function () {
 });
 
 
+let currentProfile;
+
+
 ipc.on('getProfiles', (event) => {
 	fileio.getProfiles(app.getPath('userData'), (err, profiles) => {
 		if (typeof profiles === 'undefined') {
@@ -92,6 +95,7 @@ ipc.on('checkPassword', function (event, args) {
 	fileio.getProfile(app.getPath('userData'), args[0], (err, profile) => {
 		security.verifyPassword(args[1], profile.details.password, (err, result) => {
 			if (result) {
+				currentProfile = profile;
 				mainWindow.loadURL(`file://${__dirname}/../renderer/main.html`);
 			} else {
 				event.sender.send("badPassword")

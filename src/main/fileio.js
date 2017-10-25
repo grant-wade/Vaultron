@@ -18,11 +18,15 @@ function getProfiles(userData, callback) {
     var location = userData + '/profiles';
 
     // Make sure profiles folder exists
-    fs.stat(location, (err, stats) => {
-        if (err && err.errno === 34) {
-            return callback(err);
-        }
-    });
+    // fs.stat(location, (err, stats) => {
+    //     console.log(stats);
+    //     if (err && err.errno === 34) {
+    //         return callback(err);
+    //     }
+    // });
+    if (!fs.existsSync(location)) { // Creates profile dir
+        return callback(null)
+    }
 
     // Read the contents of profiles directory
     fs.readdir(location, function (err, items) {
@@ -30,7 +34,7 @@ function getProfiles(userData, callback) {
         if (typeof items === 'undefined') {
             callback(null, items);
         }
-        items.forEach(function(element) {
+        items.forEach((element) => {
             var profile = JSON.parse(fs.readFileSync(location + '/' + element, 'utf8'));
             if (typeof profile.details.profileName != 'undefiend') {
                 profiles.push(profile.details.profileName);
@@ -39,6 +43,7 @@ function getProfiles(userData, callback) {
         callback(null, profiles);
     });
 }
+
 
 /**
  * Checks if a profile with name exists
@@ -63,7 +68,7 @@ function profileExist(userData, name, callback) {
  * @param {function(Error, Object)} callback
  */
 function getProfile(userData, name, callback) {
-    var file = userData + '/profiles/' +  name + '.json';
+    var file = userData + '/profiles/' + name + '.json';
     profileExist(userData, name, (err, exists) => {
         if (exists) {
             var profile = JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -89,8 +94,7 @@ function createProfile(userData, name, hashedPassword, masterKey, callback) {
     }
     var profile = {
         details: {
-            "profileName": name,
-            "vaultFile": name + "-vault.json",
+            "name": name,
             "password": hashedPassword.toString('base64'),
             "masterKey": masterKey.toString('base64')
         },
@@ -101,5 +105,23 @@ function createProfile(userData, name, hashedPassword, masterKey, callback) {
     location += '/' + name + '.json'
     var json = JSON.stringify(profile);
     fs.writeFile(location, json, 'utf8', callback);
+    callback(true);
+}
+
+
+/**
+ * Add an entry to the users profile.json file
+ * Entries names are NOT unique
+ *
+ * @param {String} userData
+ * @param {String} name
+ * @param {Buffer} hashedPassword
+ * @param {Buffer} masterKey
+ * @param {function(Boolean)} callback
+ */
+function addEntry(userData, profile, entry, callback) {
+    var name = profile.details.name;
+    profile.vault.push(entry);
+    console.log(profile.vault);
     callback(true);
 }

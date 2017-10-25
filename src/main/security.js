@@ -77,7 +77,7 @@ function verifyPassword(password, combined, callback) {
 /**
  * Generates a master key of 2048 bytes
  *
- * @param {function(Error, Buffer=)} callback
+ * @param {function(Error, Buffer)} callback
  */
 function generateMasterKey(callback) {
     crypto.randomBytes(2048, (err, masterKey) => {
