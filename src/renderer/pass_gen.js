@@ -12,7 +12,8 @@ copyBtn.addEventListener('click', function () {
 
 
 /**
- * sets the value of input_check
+ * flips the value of input_check to the opposite of its current value
+ * (i.e. if on -> off, if off -> on)
  * @param {*} input_check 
  */
 
@@ -29,11 +30,14 @@ function switch_val(input_check){
  */
 function generate_password(){
     
+    // STEP 1
+    // - set default lengths for strings
+    // - check inputs are within bounds
     //
-    //
-    var len = document.getElementById("length").value;
     const min_pass_len = 5;
     const max_pass_len = 5000;
+
+    var len = document.getElementById("length").value;
     if (len < 5){
         var mes = "Passwords should be at least " + min_pass_len + " characters long";
         document.getElementById("gen_result").innerHTML = mes;
@@ -45,14 +49,20 @@ function generate_password(){
         return;
     }
 
+    // STEP 2
+    // S1 - get input values
+    // S2 - Push all the characters specified by the user to an array
+    // S3 - make sure chars include more than just spaces or nothing
+    
+    // == S1 ==
+    //
     let num = document.getElementById("number").value;
     let low = document.getElementById("lower").value;
     let upp = document.getElementById("upper").value;
     let sym = document.getElementById("symbol").value;
     let spa = document.getElementById("space").value;
 
-    //
-    // Push all the characters specified by the user to an array
+    // == S2 ==
     //
     var char_choices = []; 
     if (spa == 1){
@@ -72,7 +82,9 @@ function generate_password(){
         for (var i=58; i<65; i++){ char_choices.push(i); }
         for (var i=123; i<127; i++){ char_choices.push(i); }
     }
-
+    
+    // == S3 == 
+    //
     if (char_choices.length == 1){
         document.getElementById("gen_result").innerHTML = "Only spaces! I could guess that without a for loop!";
         return;
@@ -82,12 +94,22 @@ function generate_password(){
         return;
     }
     
-    
+    // STEP 3
+    // S4 - fill uint8 array (vals 0 to 255) with cryptographically 
+    //      random values
+    // S5 - iterate over random uint8 array and add character value 
+    //      to output string if value is in input choices array
+
+
+    // == S4 ==
+    //
     var uint8 = new Uint8Array(len);
     window.crypto.getRandomValues(uint8);
     var output = "";
-    
     var i = 0;
+    
+    // == S5 ==
+    //
     while (output.length < uint8.length){
         if (char_choices.indexOf(uint8[i]) != -1){
             output += String.fromCharCode(uint8[i]);

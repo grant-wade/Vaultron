@@ -33,6 +33,24 @@ $('#auth').click(() => {
     ipc.send("checkPassword", [profName, password]);
 });
 
+// ================================= //
+// Authenticate user if enter is hit //
+// ================================= //
+
+$('#password').keypress(function(e) {
+
+    if(e.keyCode === 13){
+
+        // Ensure it is only this code that rusn
+        e.preventDefault(); 
+        
+        var profName = $('#profileSelect').val();
+        var password = $('#password').val();
+        ipc.send("checkPassword", [profName, password]);  
+    }
+});
+
+
 // ============================================= //
 // Return message if the password is not correct //
 // ============================================= //
