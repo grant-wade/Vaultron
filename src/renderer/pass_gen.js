@@ -11,6 +11,11 @@ copyBtn.addEventListener('click', function () {
 });
 
 
+/**
+ * sets the value of input_check
+ * @param {*} input_check 
+ */
+
 function switch_val(input_check){
     if (input_check.value == 0){
         input_check.value = 1;
@@ -18,6 +23,10 @@ function switch_val(input_check){
     else{ input_check.value = 0;}
 }
 
+
+/**
+ * generates a random password
+ */
 function generate_password(){
     
     //
