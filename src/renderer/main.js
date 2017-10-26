@@ -37,3 +37,23 @@ $('#pass_gen').click(() => {
     });
     win.loadURL(`file://${__dirname}/../renderer/pass_gen.html`);
 });
+
+
+/* created the new entry window */
+
+console.log('new entry');
+$('#new_entry').click(() => {
+    const remote = require('electron').remote;
+    const BrowserWindow = remote.BrowserWindow;
+    let win_size = 1500;
+    const win = new BrowserWindow({
+        frame: true,
+        resizable: false,
+        width: win_size * 0.45,
+        height: win_size * 0.5
+    });
+    win.loadURL(`file://${__dirname}/../renderer/new_entry.html`);
+    win.on('closed', () => {
+        win = null
+    });
+});
