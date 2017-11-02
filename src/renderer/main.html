@@ -11,7 +11,7 @@
     <body>
         <script>delete module.exports</script>
         <script src="./jquery-3.2.1.js"></script>
-        <script type="text/javascript" language="javascript" src="../renderer/1.10.16_js_jquery.dataTables.min.js"></script>
+        <!-- <script type="text/javascript" language="javascript" src="../renderer/1.10.16_js_jquery.dataTables.min.js"></script> -->
         <div>
             <header></header>
                 
@@ -212,13 +212,14 @@
                     <div class="w3-bar w3-bar-custom">
                       <button id="quit-app" class="w3-button w3-padding-large w3-right">Quit</button>
                       <!-- <button id="vault-test" class="w3-button w3-padding-large">Vault Test</button> -->
+                      <input type="text/javascript" language="javascript" class="w3-bar-item w3-input w3-padding-large" placeholder="Search.." src="../renderer/1.10.16_js_jquery.dataTables.min.js">
+                      <a href="#" class="w3-bar-item w3-button w3-green w3-padding-large">Go</a>
                       <button id="pass_gen" class="w3-button w3-padding-large">Password Generator</button>
                       <button id="new_entry" class="w3-button w3-padding-large">New Entry</button>
                       <div class="w3-dropdown-hover w3-right">
                       <button class="w3-button w3-padding-large">Profile</button>
                         <div id="myDropdown" class="w3-dropdown-content ">
                             <a href="#" class="w3-bar-item w3-button">Settings</a>
-                            <a href="#" class="w3-bar-item w3-button">Search</a>
                             <a href="login.html" class="w3-bar-item w3-button">Switch Profiles</a>
                             <a href="#" class="w3-bar-item w3-button">LogOut</a>
                         </div>
