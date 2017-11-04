@@ -17,11 +17,13 @@ $('#quit-app').click(() => {
 
 // Uses Jquery to allow table to be sorted and scrollable
 //
+/*
 $('#passwords').DataTable( {
     "scrollY":        "700px",
     "scrollCollapse": true,
     "paging":         false
 } );
+*/
 
 /* Script for generating cryptographically secure random passwords */
 console.log('passwords generator');
