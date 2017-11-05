@@ -79,10 +79,26 @@ function verifyPassword(password, combined, callback) {
  * @param {function(Error, Buffer)} callback
  */
 function generateMasterKey(callback) {
-    crypto.randomBytes(2048, (err, masterKey) => {
+    getBytes(2048, (err, key) => {
         if (err) {
-            return callback(err);
+            return callback(err)
         }
-        callback(null, masterKey);
+        callback(null, key)
+    })
+}
+
+
+/**
+ * Generates random bytes of bytes length
+ *
+ * @param {Number} bytes
+ * @param {function(Error, Buffer)} callback
+ */
+function getBytes(amount, callback) {
+    crypto.randomBytes(parseInt(amount), (err, key) => {
+        if (err) {
+            return callback(err)
+        }
+        callback(null, key)
     })
 }
