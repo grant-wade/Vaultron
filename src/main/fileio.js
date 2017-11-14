@@ -1,10 +1,12 @@
 const fs = require('fs');
+const security = require('./security.js');
 
 module.exports = {
     getProfiles,
     profileExist,
     createProfile,
-    getProfile
+    getProfile,
+    addEntry
 };
 
 
@@ -79,7 +81,7 @@ function getProfile(userData, name, callback) {
  * @param {String} name
  * @param {Buffer} hashedPassword
  * @param {Buffer} masterKey
- * @param {function(Boolean)} callback
+ * @param {function(Error, Boolean)} callback
  */
 function createProfile(userData, name, hashedPassword, masterKey, callback) {
     var location = userData + '/profiles';
@@ -89,17 +91,17 @@ function createProfile(userData, name, hashedPassword, masterKey, callback) {
     var profile = {
         details: {
             "name": name,
+            'count' : 0,
             "password": hashedPassword.toString('base64'),
             "masterKey": masterKey.toString('base64')
         },
         vault: {
-
         }
     };
     location += '/' + name + '.json'
     var json = JSON.stringify(profile);
     fs.writeFile(location, json, 'utf8', callback);
-    callback(true);
+    callback(null, true);
 }
 
 
@@ -111,11 +113,20 @@ function createProfile(userData, name, hashedPassword, masterKey, callback) {
  * @param {String} name
  * @param {Buffer} hashedPassword
  * @param {Buffer} masterKey
- * @param {function(Boolean)} callback
+ * @param {function(Error, Boolean)} callback
  */
 function addEntry(userData, profile, entry, callback) {
-    var name = profile.details.name;
-    profile.vault.push(entry);
+    var prof_id = profile.details.count;
+    profile.details.count += 1;
+    profile.vault[prof_id] = {
+        'website' : entry[0],
+        'username' : entry[1],
+        'password' : entry[2]
+    }
     console.log(profile.vault);
-    callback(true);
+    var location = userData + '/profiles/' + profile.details.name + '.json'
+    var json = JSON.stringify(profile, null, 4);
+    console.log(json);
+    fs.writeFile(location, json, 'utf8', (err) => {if (err) return callback(err)})
+    callback(null, true);
 }

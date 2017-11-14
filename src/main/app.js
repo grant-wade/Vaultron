@@ -1,9 +1,9 @@
 'use strict';
 const electron = require('electron');
 const app = electron.app;
-const security = require('./security.js')
+const security = require('./security.js');
 const ipc = require('electron').ipcMain;
-const fileio = require('./fileio.js')
+const fileio = require('./fileio.js');
 
 // Adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
@@ -91,6 +91,17 @@ ipc.on('newProfile', (event, args) => {
 
 ipc.on('getPath', function (event, arg) {
 	event.sender.send('getPathReply', app.getPath('userData'));
+});
+
+ipc.on('newEntry', function (event, entry) {
+	fileio.addEntry(userData, currentProfile, entry, (err, result) => {
+		if (err) {
+			return event.sender.send('newEntryFail');
+		}
+		if (!result) {
+			return event.sender.send('newEntryFail');
+		}
+	})
 });
 
 

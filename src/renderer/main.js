@@ -42,8 +42,6 @@ $('#pass_gen').click(() => {
 
 
 /* created the new entry window */
-
-console.log('new entry');
 $('#new_entry').click(() => {
     const remote = require('electron').remote;
     const BrowserWindow = remote.BrowserWindow;
