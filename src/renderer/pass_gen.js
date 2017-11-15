@@ -5,6 +5,7 @@
 const clipboard = require('electron').clipboard
 const copyBtn = document.getElementById('copy_btn')
 const copyInput = document.getElementById('gen_result')
+generate_password();
 
 copyBtn.addEventListener('click', function () {
   clipboard.writeText(copyInput.innerHTML)
