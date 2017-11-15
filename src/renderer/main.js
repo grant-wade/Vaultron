@@ -15,15 +15,48 @@ $('#quit-app').click(() => {
 });
 
 
+// ========================================== //
+// Pulls Data into dataSet from profiles file //
+// ========================================== //
+
+
+
+
+//===========//
+// DataTable //
+//===========//
+
+function dataTableUpdate() {
+    ipc.send('getProfile');  
+}
+
+ipc.on('returnProfile', function(event, profile) {
+    var dataSet = [];
+    for (var i in profile.vault) {
+        console.log(i);
+        console.log(profile.vault[i])
+        dataSet.push([profile.vault[i].website, profile.vault[i].username, profile.vault[i].password])
+    } 
+    console.log(profile);
+    console.log(dataSet);
+    $('#passwords').DataTable( {
+        data: dataSet,
+        "scrollY":        "700px",
+        "scrollCollapse": true,
+        "paging":         false,
+        columns: [
+            { title: "Website" },
+            { title: "Username" },
+            { title: "Password" },
+        ]
+    });
+});
+
+
 // Uses Jquery to allow table to be sorted and scrollable
-//
-/*
-$('#passwords').DataTable( {
-    "scrollY":        "700px",
-    "scrollCollapse": true,
-    "paging":         false
-} );
-*/
+$(document).ready(function() {
+    dataTableUpdate();
+});
 
 /* Script for generating cryptographically secure random passwords */
 console.log('passwords generator');
@@ -57,3 +90,6 @@ $('#new_entry').click(() => {
         win = null
     });
 });
+
+
+

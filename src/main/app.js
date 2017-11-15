@@ -101,8 +101,13 @@ ipc.on('newEntry', function (event, entry) {
 		if (!result) {
 			return event.sender.send('newEntryFail');
 		}
+		mainWindow.loadURL(`file://${__dirname}/../renderer/main.html`);
 	})
 });
+
+ipc.on('getProfile', (event) => {
+	event.sender.send('returnProfile', currentProfile);
+})
 
 
 // =============================================== //
