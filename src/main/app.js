@@ -76,11 +76,12 @@ ipc.on('newProfile', (event, args) => {
 			return event.sender.send("profileCreateFail", "Profile already exists!")
 		}
 		security.generateMasterKey((err, masterKey) => {
-			security.hashPassword(args[1], (err, buf) => {
-				if (err) {
-					ipc.send('profileCreateFail', err);
-				}
-				fileio.createProfile(app.getPath('userData'), args[0], buf, masterKey, (worked) => {
+			if (err) return event.sender.send('profileCreateFail');
+
+			security.hashPasswordAuth(args[1], (err, passObj) => {
+				if (err) return event.sender.send('profileCreateFail');
+
+				fileio.createProfile(app.getPath('userData'), args[0], passObj, masterKey, (worked) => {
 					mainWindow.loadURL(`file://${__dirname}/../renderer/login.html`);
 				});
 			});
@@ -115,8 +116,8 @@ ipc.on('getProfile', (event) => {
 // against stored password hash.                   //
 // =============================================== //
 ipc.on('checkPassword', function (event, args) {
-	fileio.getProfile(app.getPath('userData'), args[0], (err, profile) => {
-		var res = security.verifyPassword(args[1], profile.details.password, (err, result) => {
+	fileio.getProfile(userData, args[0], (err, profile) => {
+		security.verifyPassword(args[1], profile.details.password, (err, result) => {
 			if (result) {
 				console.log("good user!");
 				currentProfile = profile;

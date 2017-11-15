@@ -10,19 +10,23 @@
     <body>
         <script>delete module.exports</script>
         <script src="./jquery-3.2.1.js"></script>
-        <div class = 'container'>
-            <header>
-                <h4 id="status">New Entry</h4>
-                <div class = "newEntry" >
-                    <input id="website" type="text" class="w3-input w3-border password" placeholder="Website">
-                    <input id="username" type="text" class="w3-input w3-border password" placeholder="User Name">
-                    <input id="password" type="text" class="w3-input w3-border password" placeholder="Password">
-                    <button id="submit" class="w3-button w3-dark-grey w3-padding-large">Submit</button>
-                </div>
-            </header>
-            <section class="main">
+        <div class='w3-container'>
+            <h2 id="status">New Entry:</h2>
+            <div class = "newEntry w3-card-4 w3-container w3-padding-16">
+                <p class="entry-ele"><b>Website URL:</b></p>
+                <input id="website" type="text" class="w3-input w3-border entry-ele" placeholder="Website">
+                <p class="entry-ele"><b>Username:</b></p>
+                <input id="username" type="text" class="w3-input w3-border entry-ele" placeholder="User Name">
+                <p class="entry-ele"><b>Password:</b></p>
+                <input id="password" type="text" class="w3-input w3-border entry-ele" placeholder="Password">
+                <p class="entry-ele"><b>Notes:</b></p>
+                <textarea id="notes" class="entry-notes" row="10"></textarea><br>
+                <button id="submit" class="w3-button w3-dark-grey w3-padding-large">Submit</button>
+            </div>
+            <p></p>
+            <!-- <section class="main">
             </section>
-            <footer></footer>
+            <footer></footer> -->
         <script src="./new_entry.js"></script>
         </div>    
     </body>

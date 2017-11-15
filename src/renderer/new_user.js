@@ -16,6 +16,6 @@ $('#submit').click(() => {
 
 })
 
-ipc.on('profileCreateFail', (err) => {
+ipc.on('profileCreateFail', () => {
     $('#status').html("Profile creation failed! User already exists");
 })
