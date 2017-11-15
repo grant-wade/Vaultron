@@ -83,13 +83,10 @@ $('#new_entry').click(() => {
         frame: true,
         resizable: false,
         width: win_size * 0.45,
-        height: win_size * 0.5
+        height: win_size * 0.45
     });
     win.loadURL(`file://${__dirname}/../renderer/new_entry.html`);
     win.on('closed', () => {
         win = null
     });
 });
-
-
-
