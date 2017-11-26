@@ -93,7 +93,7 @@ function createProfile(userData, name, passObj, masterKey, callback) {
             "name": name,
             'count' : 0,
             "password": passObj,
-            "masterKey": masterKey.toString('base64')
+            "masterKey": masterKey
         },
         vault: {
         }
@@ -118,12 +118,7 @@ function createProfile(userData, name, passObj, masterKey, callback) {
 function addEntry(userData, profile, entry, callback) {
     var prof_id = profile.details.count;
     profile.details.count += 1;
-    profile.vault[prof_id] = {
-        'website' : entry[0],
-        'username' : entry[1],
-        'password' : entry[2],
-        'notes' : entry[3]
-    }
+    profile.vault[prof_id] = entry;
     var location = userData + '/profiles/' + profile.details.name + '.json'
     var json = JSON.stringify(profile, null, 2);
     fs.writeFile(location, json, 'utf8', (err) => {if (err) return callback(err)})

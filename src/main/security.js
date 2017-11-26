@@ -7,6 +7,7 @@ module.exports = {
     generateMasterKey,
     encrypt,
     decrypt,
+    decryptProfile,
     hashCode
 };
 
@@ -177,6 +178,24 @@ function decrypt(dataObj, key, callback) {
         return callback({ error: true, message: "JSON error: " + err.message }, output);
     }
     return callback(null, output);
+}
+
+
+
+function decryptProfile(profile, masterKey, callback) {
+    var decryptedProfile = JSON.parse(JSON.stringify(profile));
+    var keys = [];
+    for (var key in decryptedProfile.vault) {
+        if (decryptedProfile.vault.hasOwnProperty(key)) {
+            keys.push(key);
+        }
+    }
+    Promise.all(keys.map(key => {decrypt(decryptedProfile.vault[key].password, masterKey, (err, password) => {
+        decryptedProfile.vault[key].password = password;
+    }
+    )})).then(() => {
+        callback(null, decryptedProfile)
+    });
 }
 
 

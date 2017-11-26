@@ -12,8 +12,7 @@ $('#submit').click(() => {
     else if (password.length < 5) {
         $('#status').html("Password must be longer than 5 characters");
     } else {
-        console.log(webSite + ' ' + userName + ' ' + password);
-        ipc.send('newEntry', [webSite, userName, password, notes]);
+        ipc.send('newEntry', {'website': webSite, 'username': userName, 'password': password, 'notes': notes});
         window.close();           
     }
 });

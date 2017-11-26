@@ -56,6 +56,8 @@ ipc.on('shutdown', function () {
 
 
 let currentProfile;
+let masterKey;
+let passwordHash;
 
 
 ipc.on('getProfiles', (event) => {
@@ -71,18 +73,24 @@ ipc.on('getProfiles', (event) => {
 
 ipc.on('newProfile', (event, args) => {
 	fileio.profileExist(userData, args[0], (err, val) => {
-		console.log(err + ' ' + val);
-		if (val) {
-			return event.sender.send("profileCreateFail", "Profile already exists!")
-		}
+		if (val) return event.sender.send("profileCreateFail", "Profile Exists");
+
 		security.generateMasterKey((err, masterKey) => {
-			if (err) return event.sender.send('profileCreateFail');
+			if (err) return event.sender.send('profileCreateFail', "Key Generation Error");
 
 			security.hashPasswordAuth(args[1], (err, passObj) => {
-				if (err) return event.sender.send('profileCreateFail');
+				if (err) return event.sender.send('profileCreateFail', "Hashing Password Error");
 
-				fileio.createProfile(app.getPath('userData'), args[0], passObj, masterKey, (worked) => {
-					mainWindow.loadURL(`file://${__dirname}/../renderer/login.html`);
+				security.hashPassword(args[1], passObj, (err, hash) => {
+					if (err) return event.sender.send('profileCreateFail', "Hashing Password Error");
+
+					security.encrypt(masterKey, hash, (err, keyObj) => {
+						if (err) return event.sender.send('profileCreateFail', "Encryption Error");
+
+						fileio.createProfile(app.getPath('userData'), args[0], passObj, keyObj, (worked) => {
+							mainWindow.loadURL(`file://${__dirname}/../renderer/login.html`);
+						});
+					});
 				});
 			});
 		});
@@ -95,19 +103,24 @@ ipc.on('getPath', function (event, arg) {
 });
 
 ipc.on('newEntry', function (event, entry) {
-	fileio.addEntry(userData, currentProfile, entry, (err, result) => {
-		if (err) {
-			return event.sender.send('newEntryFail');
-		}
-		if (!result) {
-			return event.sender.send('newEntryFail');
-		}
-		mainWindow.loadURL(`file://${__dirname}/../renderer/main.html`);
-	})
+	security.encrypt(entry.password, masterKey, (err, passObj) => {
+		entry.password = passObj;
+		fileio.addEntry(userData, currentProfile, entry, (err, result) => {
+			if (err) {
+				return event.sender.send('newEntryFail');
+			}
+			if (!result) {
+				return event.sender.send('newEntryFail');
+			}
+			mainWindow.loadURL(`file://${__dirname}/../renderer/main.html`);
+		});
+	});
 });
 
 ipc.on('getProfile', (event) => {
-	event.sender.send('returnProfile', currentProfile);
+	security.decryptProfile(currentProfile, masterKey, (err, profile) => {
+		event.sender.send('returnProfile', profile);
+	});
 })
 
 
@@ -118,13 +131,20 @@ ipc.on('getProfile', (event) => {
 ipc.on('checkPassword', function (event, args) {
 	fileio.getProfile(userData, args[0], (err, profile) => {
 		security.verifyPassword(args[1], profile.details.password, (err, result) => {
-			if (result) {
-				console.log("good user!");
-				currentProfile = profile;
-				mainWindow.loadURL(`file://${__dirname}/../renderer/main.html`);
-			} else {
-				event.sender.send("badPassword")
+			console.log(result);
+			if (!result) {
+				return event.sender.send("badPassword")
 			}
+			currentProfile = profile;
+			security.hashPassword(args[1], profile.details.password, (err, hash) => {
+				if (err) return event.sender.send("badPassword");
+				passwordHash = Buffer.from(hash, 'base64');
+				security.decrypt(profile.details.masterKey, hash, (err, key) => {
+					if (err) return event.sender.send("badPassword");
+					masterKey = Buffer.from(key, 'base64');
+					mainWindow.loadURL(`file://${__dirname}/../renderer/main.html`);
+				});
+			});	
 		});
 	});
 });
