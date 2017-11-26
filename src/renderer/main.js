@@ -51,17 +51,22 @@ ipc.on('returnProfile', function(event, profile) {
     } 
     console.log(profile);
     console.log(dataSet);
-    $('#passwords').DataTable( {
+    var dt = $('#passwords').DataTable( {
         data: dataSet,
         "scrollY":        "700px",
         "scrollCollapse": true,
         "paging":         false,
+        
         columns: [
             { title: "Website" },
             { title: "Username" },
-            { title: "Password" },
+            { title: "Password", "visible":false },
         ]
+        
     });
+    $('#myCheck1').change(function() {
+        dt.columns(2).visible(!$(this).is(':checked'))
+      });
 });
 
 
