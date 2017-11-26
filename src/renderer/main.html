@@ -5,8 +5,8 @@
     <head>
         <meta charset="utf-8">
         <title>Vaultron</title>
-        <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="../css/w3.css">
+        <link rel="stylesheet" href="../css/main.css">
     </head>
     <body>
         <script>delete module.exports</script>
@@ -19,12 +19,14 @@
                 <div class="wrapper">
                   <div class="central">
                     <!-- central div -->
+                    <b>Show/hide Passwords</b>
                     <div id="scrollbar-main" >
-                            <div>
-                                <label>Hide Passwords
-                                    <input type="checkbox" id="myCheck1" checked=checked>
-                                </label>
-                            </div>
+                        <div style="position: inline">
+                            <label class="switch">
+                                <input  type="checkbox" id="myCheck1" checked=checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
                         <table id="passwords" class="display" width="100%" cellspacing="0"></table> 
                     </div>
                   </div>
@@ -34,7 +36,7 @@
                       <button id="pass_gen" class="w3-button w3-padding-large">Password Generator</button>
                       <button id="new_entry" class="w3-button w3-padding-large">New Entry</button>
                       <div class="w3-dropdown-hover w3-right">
-                          <button class="w3-button w3-padding-large ">Profie</button>
+                          <button class="w3-button w3-padding-large ">Profile</button>
                             <div id="myDropdown" class="w3-dropdown-content w3-bar-block w3-card-4">
                                 <a href="#" class="w3-bar-item w3-button">Settings</a>
                                 <a href="login.html" class="w3-bar-item w3-button">Logout</a>
