@@ -36,22 +36,20 @@ function unescapeHtml(escapedStr) {
 // DataTable setup and display //
 // =========================== //
 
+let table
+
 function dataTableUpdate() {
     ipc.send('getProfile');  
 }
 
 ipc.on('returnProfile', function(event, profile) {
     var dataSet = [];
-    for (var i in profile.vault) {
-        console.log(i);
-        console.log(profile.vault[i])
-        dataSet.push([escapeHtml(profile.vault[i].website),
-                      escapeHtml(profile.vault[i].username),
-                      escapeHtml(profile.vault[i].password)]);
+    for (var key in profile.vault) {
+        dataSet.push([escapeHtml(profile.vault[key].website),
+                      escapeHtml(profile.vault[key].username),
+                      escapeHtml(profile.vault[key].password)]);
     } 
-    console.log(profile);
-    console.log(dataSet);
-    var dt = $('#passwords').DataTable( {
+    table = $('#passwords').DataTable( {
         data: dataSet,
         "scrollY":        "700px",
         "scrollCollapse": true,
@@ -68,6 +66,10 @@ ipc.on('returnProfile', function(event, profile) {
         dt.columns(2).visible(!$(this).is(':checked'))
       });
 });
+
+$('#passwords').on( 'click', 'td', function () {
+    console.log( table.cell( this ).data() );
+} );
 
 
 // Uses Jquery to allow table to be sorted and scrollable
