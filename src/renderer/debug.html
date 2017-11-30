@@ -41,7 +41,7 @@
                 Password to test:
                 <div class="w3-row">
                     <div class="w3-threequarter">
-                        <input id="passInputTwo" row="1" class="w3-input w3-border"></input>
+                        <input id="passInputTwo" class="w3-input w3-border"></input>
                     </div>
                     <div class="w3-rest">
                         <button id="savePassTwo" class="w3-button w3-dark-grey" style="width:100%">Test Password</button>
@@ -49,6 +49,30 @@
                 </div>
                 
                 <h5>Result: <span id="passResult"></span></h5>
+            </div>
+
+            <div class="w3-container w3-card-4 w3-padding-16 w3-margin">
+                <h3>Profile Creation Testing:</h3>
+                Name of profile to create:
+                <div class="w3-row">
+                    <div class="w3-threequarter">
+                        <input id="profName" class="w3-input w3-border">
+                    </div>
+                    <div class="w3-rest">
+                        <button id="createProf" class="w3-button w3-dark-grey" style="width:100%">Create Profile</button>
+                    </div>
+                </div>
+                Profile File Contents:
+                <textarea id="profContents" rows="12" style="width:100%;resize:none;" readonly></textarea>
+
+                <div clas="w3-row">
+                    <div class="w3-col s6">
+                        <button id="openProfiles" class="w3-button w3-dark-grey" style="width:100%">Open Profile Folder</button>
+                    </div>
+                    <div class="w3-col s6">
+                        <button id="deleteProfiles" class="w3-button w3-dark-grey" style="width:100%">Delete All Profiles</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="w3-container w3-center">

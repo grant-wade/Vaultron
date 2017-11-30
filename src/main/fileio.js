@@ -93,7 +93,7 @@ function createProfile(userData, name, passObj, masterKey, callback) {
             "name": name,
             'count' : 0,
             "password": passObj,
-            "masterKey": masterKey
+            "masterKey": masterKey.toString('base64')
         },
         vault: {
         }

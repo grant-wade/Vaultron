@@ -68,7 +68,7 @@ ipc.on('returnProfile', function(event, profile) {
     });
     $('#myCheck1').change(function() {
         dt.columns(2).visible(!$(this).is(':checked'))
-      });
+    });
 
 });
 

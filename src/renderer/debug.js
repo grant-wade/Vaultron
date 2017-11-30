@@ -2,6 +2,9 @@
 // Testing imports //
 // =============== //
 let security = require('../main/security.js');
+let fileio = require('../main/fileio.js');
+let ipc = require('electron').ipcRenderer;
+let shell = require('electron').shell;
 
 // ========================================= //
 // Escapes websites, usernames and passwords //
@@ -53,5 +56,31 @@ $(() => {
                 $('#passResult').html("Passwords don't match!");
             }
         });
+    });
+
+    let path;
+    ipc.send('getPath');
+    ipc.on('getPathReply', (event, appPath) => path = appPath);
+
+
+    $('#createProf').on('click', function() {
+        var profName = $('#profName').val();
+        security.hashPasswordAuth('password123', (err, pass) => {
+            fileio.createProfile(path, profName, pass, encKey, (err, worked) => {
+                console.log(worked);
+                if (worked) {
+                    fileio.getProfile(path, profName, (err, profile) => {
+                        console.log(profile);
+                        $('#profContents').html(JSON.stringify(profile));
+                    })
+                }
+            });
+        });
+    });
+
+
+    $('#openProfiles').on('click', function() {
+        let profilePath = path + '/profiles/';
+        shell.openItem(profilePath);
     });
 });
