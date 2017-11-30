@@ -30,10 +30,17 @@ function getProfiles(userData, callback) {
         if (typeof items === 'undefined') {
             callback(null, items);
         }
+        if (!items.length > 0) {
+            return callback(null, []);
+        }
         items.forEach((element) => {
-            var profile = JSON.parse(fs.readFileSync(location + '/' + element, 'utf8'));
-            if (typeof profile.details.name != 'undefiend') {
-                profiles.push(profile.details.name);
+            try {
+                var profile = JSON.parse(fs.readFileSync(location + '/' + element, 'utf8'));
+                if (typeof profile.details.name != 'undefiend') {
+                    profiles.push(profile.details.name);
+                }
+            } catch(e) {
+                return;
             }
         });
         callback(null, profiles);
@@ -93,7 +100,7 @@ function createProfile(userData, name, passObj, masterKey, callback) {
             "name": name,
             'count' : 0,
             "password": passObj,
-            "masterKey": masterKey.toString('base64')
+            "masterKey": masterKey
         },
         vault: {
         }
