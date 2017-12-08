@@ -44,7 +44,7 @@ body {
 }
 
 .central {
-  grid-column: 2 / 7;
+  grid-column: 1 / 7;
   grid-row: 2 / 30;
   color: #2c3233;
   background-color: #e1ebed;
