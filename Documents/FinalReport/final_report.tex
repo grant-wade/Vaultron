@@ -200,7 +200,7 @@ Our tools for this project involved:
 \begin{itemize}
     \item \textbf{Electron} - Open Source javascript framework for cross platform app development
     \item \textbf{Node.js} - backend javascript runtime
-    \item \textbf{CSS3 & HTML5} - App styling and layout
+    \item \textbf{CSS3 \& HTML5} - App styling and layout
     \item \textbf{Latex} - used to write the reports/documents and generate pdfs
     \item \textbf{IDS} - IDE's used by our team 
         \begin{itemize}
@@ -244,24 +244,70 @@ and gave us expereince dealing with these software development challenges.
 \chapter{Testing}
 
 \section{Testing Plan}
-testing
+Our static testing process involved testing the consistency of the source code 
+and HTML pages by testing syntax and usability of the code elements such as 
+valid links and no unused variables. The dynamic testing process involved
+testing user interface elements such as buttons and input fields as well as 
+code functionality through a custom interactable encryption and decryption
+testing suite.
 
 
 \section{Tests For Functional Requirements}
-testing
+
+\subsection{Generate Secure Passwords}
+Password generation will allow the user to generate a secure password of any length or 
+complexity. This will be accomplished using the secure bytes provided by every
+operating system. There will be options to include special characters, uppercase,
+lowercase, and numbers when generating the passwords.
+
+\subsection{Authenticate User to Decrypt Passwords}
+This function will verify who the user is before decrypting any passwords, utilizing 
+the master password provided by the user. Once the master password is verified
+the master key will be decrypted to make all passwords avaliable.
+
+\subsection{Generate a Vault on First Run of Software}
+This function will create a Vault every time a new user is registered for an account 
+with Vaultron. This is a database created for the user to be able to create new
+passwords, search, delete, copy (to the clipboard), and manipulate their passwords
+for any account as they deem necessary.
+
+\subsection{Search Through Passwords}
+This function will allow the user to search through their already created passwords
+with either the website the password is attached to or the username that goes with 
+the password. 
+
+\subsection{Creation of New Entries}
+This function allows the user to create new entries to there previously created 
+database. They will need to input the website that is using the password and
+username that accompanies the password.  They can either store a password that
+they provide or use the password generater and generate a new password.
+
+\subsection{Syncing Users Vaults Between Computers}
+This function allows the user to acquire their Vaultron account from any computer 
+they want, utilizing which ever resource they are most comfortable using. (Dropbox, 
+Google Drive, etc)
+
+% END functional requirements
 
 
 \section{Tests For Non-Functional Requirements}
-Testing
+All non-functional requirements passed our testing. Log-in time was declared to 
+take less than 2 seconds, which our inspector verified by running the app. In 
+addition to log-in, our inspector tested the time it took to make a entry which 
+was less than 1 second. Lastly our inspector verified that generating a new 
+password took less 1 second. Through these tests we were able to verify that our 
+non-functional tests were passed.
 
 \section{Hardware And Software Requirements}
-Testing
+Our app is cross platform and therefor does not have hardware requirements. 
+Since the app is cross platform, our software requirements will involve 
+testing on multiple operating systems including Windows 10 and MacOS Sierra.
 
 % END OF TESTING
 
 
 \chapter{Analysis}
-stuff about analysis
+stuff about analysis 
 
 % END OF Analysis
 
