@@ -122,7 +122,15 @@
 \section{Project Overview}
 Vaultron is a cryptographically secure cross platform password manager
 written in electron and node.js which allows users to store their account
-information for websites locally with easy access.
+information for websites locally with easy access. It will store hashed passwords 
+in a JSON file for safe keeping. Vaultron will allow multiple profiles, each one will
+have a master password of its own that will unlock The Vault. This master password will 
+let the user not only let them access their passwords, but also edit any information that 
+is stored in The Vault. The master password will be created by the user so that they can 
+remember it. Our password manager also allows the user to create and store strong and 
+secure passwords that are created with our password generator. This allows the user 
+to only need to remember the master password. 
+
 
 
 \section{Definitions, Acronyms And Abbreviations}
@@ -195,6 +203,8 @@ used in place of user designed passwords.
 % END OF DESIGN
 
 \chapter{Implementation}
+\section{Development Environment}
+
 Our tools for this project involved:
 
 \begin{itemize}
@@ -210,8 +220,6 @@ Our tools for this project involved:
         \end{itemize}
 \end{itemize}
 
-\section{Development Environment}
-stuff
 
 \section{Task Distribution}
 
@@ -225,6 +233,11 @@ code and implementation of the password generation page. In addition to this
 I contributed to the main table where the data is displayed.
 
 \subsection{Rob Wooner}
+My efforts in this project were focused around Vaultron's main page. I helped
+Robby with the layout and configuration of the data table presented on the main
+page. Along with the contributions listed above, I also took part in the creation 
+and drafting of the documentation for Vaultron.
+
 
 
 
@@ -299,7 +312,7 @@ password took less 1 second. Through these tests we were able to verify that our
 non-functional tests were passed.
 
 \section{Hardware And Software Requirements}
-Our app is cross platform and therefor does not have hardware requirements. 
+Our app is cross platform and therefore does not have hardware requirements. 
 Since the app is cross platform, our software requirements will involve 
 testing on multiple operating systems including Windows 10 and MacOS Sierra.
 
