@@ -1,5 +1,6 @@
 const ipc = require('electron').ipcRenderer;
 
+// 
 $('#submit').click(() => {
     var webSite = $('#website').val();
     var userName = $('#username').val();
@@ -17,7 +18,7 @@ $('#submit').click(() => {
     }
 });
 
-
+// if entry creation fails show message
 ipc.on('newEntryFail', () => {
     $('#status').html("Creation Failed!");
 });

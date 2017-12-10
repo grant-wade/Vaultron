@@ -55,11 +55,14 @@ ipc.on('shutdown', function () {
 });
 
 
+// Global profile variables
 let currentProfile;
 let masterKey;
 let passwordHash;
 
 
+
+// Get all profiles for login window
 ipc.on('getProfiles', (event) => {
 	fileio.getProfiles(app.getPath('userData'), (err, profiles) => {
 		if (typeof profiles === 'undefined') {
@@ -70,23 +73,24 @@ ipc.on('getProfiles', (event) => {
 	});
 })
 
-
+// Create a new profile
 ipc.on('newProfile', (event, args) => {
+	// check if profile exists
 	fileio.profileExist(userData, args[0], (err, val) => {
 		if (val) return event.sender.send("profileCreateFail", "Profile Exists");
-
+		// generate a master key for the profile
 		security.generateMasterKey((err, masterKey) => {
 			if (err) return event.sender.send('profileCreateFail', "Key Generation Error");
-
+			// hash the password for storage
 			security.hashPasswordAuth(args[1], (err, passObj) => {
 				if (err) return event.sender.send('profileCreateFail', "Hashing Password Error");
-
+				// get password used for hashing
 				security.hashPassword(args[1], passObj, (err, hash) => {
 					if (err) return event.sender.send('profileCreateFail', "Hashing Password Error");
-
+					// encrypt master key for storage
 					security.encrypt(masterKey, hash, (err, keyObj) => {
 						if (err) return event.sender.send('profileCreateFail', "Encryption Error");
-
+						// create profile with encrypted 
 						fileio.createProfile(app.getPath('userData'), args[0], passObj, keyObj, (worked) => {
 							mainWindow.loadURL(`file://${__dirname}/../renderer/login.html`);
 						});
@@ -97,14 +101,18 @@ ipc.on('newProfile', (event, args) => {
 	});
 });
 
-
+// get user application directory
 ipc.on('getPath', function (event, arg) {
 	event.sender.send('getPathReply', app.getPath('userData'));
 });
 
+
+// Create a new entry in the current profile
 ipc.on('newEntry', function (event, entry) {
+	// encrypt password
 	security.encrypt(entry.password, masterKey, (err, passObj) => {
 		entry.password = passObj;
+		// add entry to profile
 		fileio.addEntry(userData, currentProfile, entry, (err, result) => {
 			if (err) {
 				return event.sender.send('newEntryFail');
@@ -112,11 +120,14 @@ ipc.on('newEntry', function (event, entry) {
 			if (!result) {
 				return event.sender.send('newEntryFail');
 			}
+			// return to main window
 			mainWindow.loadURL(`file://${__dirname}/../renderer/main.html`);
 		});
 	});
 });
 
+
+// get current profile
 ipc.on('getProfile', (event) => {
 	security.decryptProfile(currentProfile, masterKey, (err, profile) => {
 		event.sender.send('returnProfile', profile);
@@ -129,16 +140,20 @@ ipc.on('getProfile', (event) => {
 // against stored password hash.                   //
 // =============================================== //
 ipc.on('checkPassword', function (event, args) {
+	// get profile for login
 	fileio.getProfile(userData, args[0], (err, profile) => {
+		// verify that passwords matches
 		security.verifyPassword(args[1], profile.details.password, (err, result) => {
 			console.log(result);
 			if (!result) {
 				return event.sender.send("badPassword")
 			}
 			currentProfile = profile;
+			// hash password for decryption use
 			security.hashPassword(args[1], profile.details.password, (err, hash) => {
 				if (err) return event.sender.send("badPassword");
 				passwordHash = Buffer.from(hash, 'base64');
+				// decrypt master key for password decyption
 				security.decrypt(profile.details.masterKey, hash, (err, key) => {
 					if (err) return event.sender.send("badPassword");
 					masterKey = Buffer.from(key, 'base64');
