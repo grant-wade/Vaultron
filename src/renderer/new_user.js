@@ -2,6 +2,8 @@
 // var electron = require('electron')
 const ipc = require('electron').ipcRenderer;
 
+
+// create user and verify password is of proper length
 $('#submit').click(() => {
     var profName = $('#profileName').val();
     var password = $('#password').val();

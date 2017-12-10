@@ -58,11 +58,13 @@ $(() => {
         });
     });
 
+    // get path on page load
     let path;
     ipc.send('getPath');
     ipc.on('getPathReply', (event, appPath) => path = appPath);
 
 
+    // Create profile with given name and password
     $('#createProf').on('click', function() {
         var profName = $('#profName').val();
         security.hashPasswordAuth('password123', (err, pass) => {

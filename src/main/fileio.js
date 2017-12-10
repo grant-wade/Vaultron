@@ -1,6 +1,8 @@
 const fs = require('fs');
 const security = require('./security.js');
 
+
+// Export functions for external use
 module.exports = {
     getProfiles,
     profileExist,

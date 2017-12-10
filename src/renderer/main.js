@@ -35,11 +35,11 @@ function unescapeHtml(escapedStr) {
 // =========================== //
 // DataTable setup and display //
 // =========================== //
-
 function dataTableUpdate() {
     ipc.send('getProfile');  
 }
 
+// when profile is returned create table
 ipc.on('returnProfile', function(event, profile) {
     var dataSet = [];
     for (var i in profile.vault) {

@@ -1,5 +1,6 @@
 const crypto = require('crypto');
 
+// Export modules for external use
 module.exports = {
     hashPassword,
     hashPasswordAuth,
@@ -11,6 +12,8 @@ module.exports = {
     hashCode
 };
 
+
+// Encryption variables
 const HV = {
     iterations: 500000,
     hashBytes: 64,
@@ -86,11 +89,14 @@ function verifyPassword(password, passObj, callback) {
  * @param {function(Error, Buffer)} callback
  */
 function hashPassword(password, passObj, callback) {
+    // Collect the hash length, salt and iteration count
     let len = Buffer.from(passObj.hash, 'base64').length;
     let salt = Buffer.from(passObj.salt, 'base64');
     let iter = passObj.iter;
+    // Hash the password
     crypto.pbkdf2(password, salt, iter, len, 'sha512', (err, hash) => {
         if (err) return callback(err);
+        // return password hash
         callback(null, hash);
     });
 }
@@ -181,15 +187,24 @@ function decrypt(dataObj, key, callback) {
 }
 
 
-
+/** 
+ * Decrypt all keys in profile
+ * 
+ * @param {Object} profile 
+ * @param {Buffer} masterKey 
+ * @param {function(Error, Object)} callback 
+ */
 function decryptProfile(profile, masterKey, callback) {
+    // Get profile to decrypt
     var decryptedProfile = JSON.parse(JSON.stringify(profile));
     var keys = [];
+    // Get all keys in profile
     for (var key in decryptedProfile.vault) {
         if (decryptedProfile.vault.hasOwnProperty(key)) {
             keys.push(key);
         }
     }
+    // Decrypt all keys and return profile when done
     Promise.all(keys.map(key => {decrypt(decryptedProfile.vault[key].password, masterKey, (err, password) => {
         decryptedProfile.vault[key].password = password;
     }
@@ -248,21 +263,4 @@ function getBytes(amount, callback) {
         }
         callback(null, key)
     })
-}
-
-
-/**
- * Generates a hash from a string
- * 
- * @param {String} str 
- */
-function hashCode(str) {
-    var hash = 0;
-    if (str.length == 0) return hash;
-    for (i = 0; i < str.length; i++) {
-        char = str.charCodeAt(i);
-        hash = ((hash<<5)-hash)+char;
-        hash = hash & hash; // Convert to 32bit integer
-    }
-    return hash;
 }
