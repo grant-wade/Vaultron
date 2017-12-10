@@ -70,7 +70,7 @@
     \textbf{\Huge Vaultron}
     \vspace{20mm}
 
-    {\huge Version $<0.0.1>$}
+    {\huge Version $<0.0.2>$}
     \vspace{20mm}
 
     {\huge Prepared by}
@@ -163,7 +163,12 @@ for file io and backend applications.
 \chapter{Design}
 
 \section{System Modeling}
-At the 
+The system modeling done in the Software Design Document was stricktly
+adheared to in the actual implementation of Vaultron. Time was taken
+during the design phase to make sure that the proper methods were
+being done. This included deciding the proper encryption methods and
+how to properly deal with the login and storage of users passwords.
+This was not something that was taken lightly in the first place.
 
 
 
@@ -229,6 +234,12 @@ and implemting buttons. I wrote the original new entry feature for this app
 that eventualy got updated and changed as we progressed. I also helped with 
 the documentation for this app.
 \subsection{Grant Wade}
+My contribution to this project was primarily the security behind the
+encryption and decryption of the profiles. This involved researching 
+an algorithm that would suit the kinds of hashing and encryption that
+was sufficient for the project. File operations were also partially
+written by me.
+
 
 \subsection{Robby Boney}
 My primary contribution to this app was layout and css styling as well as the 
@@ -297,10 +308,6 @@ database. They will need to input the website that is using the password and
 username that accompanies the password.  They can either store a password that
 they provide or use the password generater and generate a new password.
 
-\subsection{Syncing Users Vaults Between Computers}
-This function allows the user to acquire their Vaultron account from any computer 
-they want, utilizing which ever resource they are most comfortable using. (Dropbox, 
-Google Drive, etc)
 
 % END functional requirements
 
@@ -342,7 +349,7 @@ testing on multiple operating systems including Windows 10 and MacOS Sierra.
 \subsection*{Implementation of Security}
 \begin{itemize}
     \item Colton: 10 hours
-    \item Grant: 40 hours
+    \item Grant: 30 hours
     \item Rob: 10 hours
     \item Robby: 10 hours
 \end{itemize}
